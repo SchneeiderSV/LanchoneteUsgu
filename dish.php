@@ -10,15 +10,16 @@ if(isset($_GET['id'])){
     $dish = Database::select('dish', ['id', 'name', 'description', 'price', 'img'], ["id" => $selectedId]);
 
     if (isset($_POST['cart'])) {
-        $quantity = intval($_POST['cart']);
+        $quantity = intval($_POST['quantity']);
         if ($quantity > 0) {
+
             $cartItem = [
-                'id' => $dish['id'],
-                'quantity' => $quantity
+                'id' => $dish[0]['id'],
+                'quantity' => $quantity,
+                'ingredients' => $_POST['ingredients'],
             ];
 
             Cart::store($cartItem);
-
         }
     }
 
@@ -42,10 +43,10 @@ if(isset($_GET['id'])){
     <input type="number" value="1" min="1" name="quantity" id="quantity">
 <h2>Ingredientes:</h2>
 <?php if($ingredients){ foreach($ingredients as $ingredient){ ?>
-    <input type="checkbox" checked name="<?= $ingredient['name'] ?>" id="<?= $ingredient['name'] ?>">
+    <input type="checkbox" checked name="ingredients[<?= $ingredient['id'] ?>]" id="<?= $ingredient['name'] ?>">
     <label for="<?= $ingredient['name'] ?>"><?= $ingredient['name'] ?></label>
 <?php } } ?>
-<input type="submit" name="carrinho" value="Adicionar ao carrinho">
+<input type="submit" name="cart" value="Adicionar ao carrinho">
 
 </form>
 

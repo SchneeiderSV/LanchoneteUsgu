@@ -3,7 +3,6 @@ include("header.php");
 require_once("utils/Database.php");
 
 $dishes = Database::selectAll('dish');
-
 ?>
 
 

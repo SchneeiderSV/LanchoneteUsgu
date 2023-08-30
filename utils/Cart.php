@@ -15,7 +15,7 @@ class Cart {
         }
 
         if ($existingItemKey !== -1) {
-            $_SESSION['cart'][$existingItemKey]['quantity'] += $quantity;
+            $_SESSION['cart'][$existingItemKey]['quantity']+=$cartItem['quantity'];
         } else {
             $_SESSION['cart'][] = $cartItem;
         }
