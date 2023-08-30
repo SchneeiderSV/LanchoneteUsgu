@@ -1,0 +1,39 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.logo{
+    width: 100vw;
+    display: flex;
+    position: fixed;
+    justify-content: center;
+}
+.logo_icon{
+    border-radius: 50%;
+}
+.container{
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.footerContainer{
+    position: absolute;
+    height: 3rem;
+    width: 100%;
+    bottom: 0;
+    background-color: red;
+    display: flex;
+
+    justify-content: space-evenly;
+    align-items: center;
+}
+.footerItem{
+    width: 2.5rem;
+    height: 2.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

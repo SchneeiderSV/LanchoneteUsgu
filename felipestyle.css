@@ -1,0 +1,48 @@
+.titles{
+    margin: 10px;
+}
+
+.dishes{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.carrousel{
+    width: 85vw;
+    height: 22vh;
+    display: flex;
+    overflow: auto;
+    align-items: center;
+    background: lightgray;
+}
+
+.item{
+    display: flex;
+    padding: 15px;
+    flex-direction: column;
+    align-items: center;
+    font-weight: bold;
+    height: 8rem;
+}
+
+.itemName{
+    margin-top: 0.30rem;
+}
+
+.bevItem{
+    margin-bottom: 20px;
+}
+
+.itemPrice{
+    position: relative;
+    right: 0;
+    bottom: 2.6rem;
+    left: 2.2rem;
+}
+
+.beverage{
+    left: 2.5rem;
+}
+
