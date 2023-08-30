@@ -7,7 +7,10 @@
 <?php
     require_once('utils/Database.php');
 
-    
+    if(isset($_GET['delete'])){
+        require_once('utils/Database.php');
+        Database::delete('ingredient', ['id' => $_GET['delete']]);
+}
 
     if(isset($_POST['name'])){
         require_once('utils/functions.php');
@@ -60,6 +63,7 @@
         <div class="ingredient">
             <h2><?= $ingredient['name'] ?></h2>
             <p><?= $ingredient['quantity'] ?></p>
+            <a href="ingredients.php?delete=<?= $ingredient['id'] ?>">excluir</a>
         </div>
     <?php } } ?>
 </div>
