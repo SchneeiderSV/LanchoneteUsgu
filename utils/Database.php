@@ -1,0 +1,75 @@
+<?php
+
+namespace Utils;
+
+class Database {
+    private static $conn = null;
+
+    public static function getConnection() {
+        if (self::$conn === null) {
+            self::$conn = new \PDO(
+                "mysql:host=localhost;dbname=lanchonete",
+                'root',
+                ''
+            );
+        }
+        return self::$conn;
+    }
+
+    public static function selectAll($table) {
+        $conn = self::getConnection();
+        $stmt = $conn->query("SELECT * FROM $table");
+        return $stmt->fetchAll();
+    }
+
+    public static function select($table, $columns, $conditions = []) {
+        $conn = self::getConnection();
+        
+        $query = "SELECT " . implode(', ', $columns) . " FROM $table";
+
+        if (!empty($conditions)) {
+            $where = [];
+            foreach ($conditions as $column => $value) {
+                $where[] = "$column = ?";
+            }
+            $query .= " WHERE " . implode(' AND ', $where);
+        }
+
+        $stmt = $conn->prepare($query);
+        $stmt->execute(array_values($conditions));
+
+        return $stmt->fetchAll();
+    }
+
+    public static function insert($table, $data) {
+        $conn = self::getConnection();
+
+        $columns = implode(', ', array_keys($data));
+        $placeholders = implode(', ', array_fill(0, count($data), '?'));
+
+        $query = "INSERT INTO $table ($columns) VALUES ($placeholders)";
+        
+        $stmt = $conn->prepare($query);
+        $stmt->execute(array_values($data));
+
+        return $conn->lastInsertId();
+    }
+
+    public static function delete($table, $conditions) {
+        $conn = self::getConnection();
+
+        $where = [];
+        foreach ($conditions as $column => $value) {
+            $where[] = "$column = ?";
+        }
+
+        $query = "DELETE FROM $table WHERE " . implode(' AND ', $where);
+        
+        $stmt = $conn->prepare($query);
+        $stmt->execute(array_values($conditions));
+
+        return $stmt->rowCount();
+    }
+}
+
+?>

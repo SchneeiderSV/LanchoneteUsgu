@@ -1,0 +1,41 @@
+lanchonete - delievery;
+desenvolvido para celular;
+
+-Manjares del Perú-
+
+pratos:
+1- tacu tacu(feijão canário, banha, arroz, azeite, cebola roxa, alho, pimenta-ají amarela, Sal, pimenta e orégano);
+ 
+img:https://www.seriouseats.com/thmb/trUkovmZBP-USomb_AoJFXcLYQg=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/20230308-SEA-TacuTacu-AmandaSuarez-14-c35f9084c37743989224a64c046d1091.JPG
+ 
+descrição: O tacu-tacu é um prato tradicional do Peru que combina arroz e feijão, normalmente preparado com sobras de arroz e feijão cozidos. Os grãos são misturados e refogados com cebola, alho e pimentão. A mistura é compactada na frigideira até formar uma crosta dourada. Pode ser servido com acompanhamentos como bife grelhado, ovo frito, banana frita, pedaços de carne ou molho criollo, que é um molho à base de cebola, tomate, pimentão e coentro.
+ 
+2- Salchipapas(batata, salsicha, ketchup, mostarde e maionese);
+
+img: https://cozidoeassado.com/wp-content/uploads/2021/12/Salchipapas-do-equador.webp
+
+descrição: A salchipapas é uma comida rápida e popular no Peru. É uma combinação das palavras "salchicha" (salsicha) e "papas" (batatas). O prato consiste em salsichas fritas e batatas fritas cortadas em palitos, servidas geralmente com molhos como ketchup, maionese e ají (molho de pimenta);
+
+3- Lomo Saltado(carne bovina, molho de soja, tomate, cebola roxa, dente de alho, pimenta dedo-de-moça, Cominho Pimenta-do-reino, Sal, Cebolinha, Coentro);
+
+img: https://www.seriouseats.com/thmb/ph7YTcuM0eygiNrWanOhPRqKE4Q=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/__opt__aboutcom__coeus__resources__content_migration__serious_eats__seriouseats.com__2019__03__20190321-lomo-saltado-vicky-wasik-28-68ac118a03324091afed4205428ddf4e.jpg
+
+descrição: O lomo saltado é um prato emblemático da culinária peruana que combina influências chinesas e peruanas. É feito com pedaços de carne, frequentemente filé mignon, que são salteados em alta temperatura com cebola, tomate, pimenta e temperos. É comum adicionar batatas fritas crocantes por cima. O prato é servido com arroz branco e é conhecido por sua combinação única de sabores e texturas.
+
+4- Causa a la limeña (batata, cebola roxa, abacate, pimentão amarelo, pimenta, frango, limão, maionese, azeite de oliva, sal);
+
+img: https://cdn0.recetasgratis.net/es/posts/8/6/2/causa_limena_31268_orig.jpg
+
+descrição:  A causa a la limeña é uma entrada fria e colorida. Ela é feita com camadas de purê de batata amarela temperado com limão e ají amarillo (pimenta amarela), intercaladas com recheios como frango desfiado, atum ou camarões. O prato é geralmente decorado com azeitonas, ovo cozido, abacate e pimenta. A causa é uma deliciosa combinação de sabores suaves e picantes.
+
+bebidas:
+1- pisco sour(limão, jarabe, gelo, clara de ovo)
+
+img: https://upload.wikimedia.org/wikipedia/commons/2/27/Pisco_sour_20100613b.JPG
+
+descrição: O Pisco Sour é um coquetel emblemático do Peru, feito à base de pisco, uma aguardente de uva típica da região. O coquetel leva pisco, suco de limão, xarope de açúcar, clara de ovo e algumas gotas de amargo de Angostura. É agitado vigorosamente para criar uma espuma cremosa na parte superior. O Pisco Sour é um equilíbrio perfeito entre o azedo do limão, a doçura do xarope e a força do pisco, resultando em uma bebida refrescante e saborosa.
+
+2- chilcano(limão, destilado, açucar, refrigerante citrus, angostura bitter)
+img: https://www.thespruceeats.com/thmb/rgmyH0E06b73NYFNmJT2YL4q3Ug=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/chilcano-de-pisco-peruvian-brandy-cocktail-3029216-hero-01-d83b9733640e460d8627ba976ea70941.jpg
+
+descrição: O Chilcano é outro coquetel popular no Peru, conhecido por ser mais leve e refrescante. Ele é feito com pisco e ginger ale (ou cerveja de gengibre), e é geralmente servido com gelo e uma fatia de limão ou lima. A bebida tem um sabor levemente adocicado e efervescente, com uma nota picante do ginger ale que contrasta bem com a suavidade do pisco.
