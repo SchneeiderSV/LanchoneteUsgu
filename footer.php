@@ -1,7 +1,7 @@
 </body>
     <div class="footerContainer">
         <div class="footerItem">
-            <a href=""><img src="assets/house.png" width="35"></a>
+            <a href="index.php"><img src="assets/house.png" width="35"></a>
         </div>     
         <div class="footerItem">
             <a href=""><img src="assets/shopcart.png" width="35"></a>

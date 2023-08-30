@@ -6,7 +6,14 @@
 
 <?php
     require_once('utils/Database.php');
-
+    if(isset($_GET['delete'])){
+        require_once('utils/Database.php');
+        
+        Database::delete('dish_ingredient', ['dish_id' => $_GET['delete']]);
+        $filename = Database::select('dish', ['img'], ['id' => $_GET['delete']])[0]['img']; 
+        Database::delete('dish', ['id'=> $_GET['delete']]);
+        unlink('images/'.$filename);
+    }
     if(isset($_POST['name'])){
         require_once('utils/functions.php');
 
@@ -100,6 +107,7 @@
         <div class="dish">
             <h2><?= $dish['name'] ?></h2>
             <p><?= $dish['description'] ?></p>
+            <a href="dishes.php?delete=<?= $dish['id'] ?>">excluir</a>
         </div>
     <?php } } ?>
 </div>
