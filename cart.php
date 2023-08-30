@@ -26,6 +26,7 @@
         <img width="100" height="100" src="images/<?= $dish['img'] ?>" alt="">
         <h1><?= $dish['name']; ?></h1>
         <h1><?= $dish['price']; ?></h1>
+        <h1><?= $item['quantity']; ?></h1>
 
         <div class="ingredients">
             <?php foreach($item['ingredients'] as $k => $v) {
@@ -40,7 +41,7 @@
     <?php } ?>
 
             
-    <button>Finalizar pedido</button>
+    <a href="order.php">Finalizar Pedido</a>
 
 </div>
 

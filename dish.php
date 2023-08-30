@@ -1,6 +1,7 @@
 <?php
 include("header.php");
-require_once("utils/Database.php");
+require_once('utils/Database.php');
+require_once('utils/Auth.php');
 require_once("utils/Cart.php");
 
 
@@ -8,6 +9,8 @@ require_once("utils/Cart.php");
 if(isset($_GET['id'])){
     $selectedId = $_GET['id'];
     $dish = Database::select('dish', ['id', 'name', 'description', 'price', 'img'], ["id" => $selectedId]);
+
+    if(!$dish[0]['id']) Auth::redirect();
 
     if (isset($_POST['cart'])) {
         $quantity = intval($_POST['quantity']);
