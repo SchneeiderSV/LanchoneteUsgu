@@ -13,13 +13,12 @@
     border-radius: 50%;
 }
 .footerContainer{
-    position: absolute;
+    position: fixed;
     height: 3rem;
     width: 100%;
     bottom: 0;
     background-color: rgba(204, 28, 28, 0.993);
     display: flex;
-
     justify-content: space-evenly;
     align-items: center;
 }

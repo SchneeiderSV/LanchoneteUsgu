@@ -11,6 +11,11 @@
         Cart::remove($id);
         Auth::redirect('cart.php');
     }
+
+    if (!isset($_SESSION['cart'])) {
+        header("location: cartNone.php");
+    }
+
 ?>
 
 <h1>Carrinho de compras</h1>
