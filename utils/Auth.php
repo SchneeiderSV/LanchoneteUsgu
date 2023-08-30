@@ -1,14 +1,13 @@
 <?php
 
-namespace Utils;
-
 class Auth {
     public static $path = "http://localhost/lanchoneteusgu/";
 
-    public static function loginUserSession($user) {
+    public static function login($user) {
         // status 1 = usuario logado
         // status 2 = administrador
-        $_SESSION['status'] = $user['is_admin'];
+        $_SESSION['id'] = $user['id'];
+        $_SESSION['admin'] = $user['is_adm'];
         $_SESSION['name'] = $user['name'];
         $_SESSION['email'] = $user['email'];
         $_SESSION['address'] = $user['address'];
@@ -21,13 +20,13 @@ class Auth {
     }
 
     public static function checkAuth(){
-        if(!isset($_SESSION['status'])){
+        if(!isset($_SESSION['id'])){
             self::redirect();
         }
     }
 
     public static function checkAdmin(){
-        if(!isset($_SESSION['status']) || $_SESSION['status'] != 2){
+        if(!isset($_SESSION['id']) || $_SESSION['admin'] != 1){
             self::redirect();
         }
     }

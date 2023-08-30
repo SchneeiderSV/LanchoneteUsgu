@@ -1,7 +1,5 @@
 <?php
 
-namespace Utils;
-
 class Database {
     private static $conn = null;
 

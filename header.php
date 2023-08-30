@@ -7,8 +7,7 @@
     <link rel="stylesheet" href="felipestyle.css">
     <link rel="stylesheet" href="schneiderstyle.css">
 </head>
-<body>
-<div class="logo">
-    <img class="logo_icon" src="assets/picarone.jpeg" width="50px">
-</div>    
+<body> 
+
+<?php session_start(); ?>
 
