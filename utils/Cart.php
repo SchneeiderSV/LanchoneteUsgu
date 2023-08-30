@@ -20,6 +20,14 @@ class Cart {
             $_SESSION['cart'][] = $cartItem;
         }
     }
+
+    public static function remove($position) {
+        if (isset($_SESSION['cart']) && isset($_SESSION['cart'][$position])) {
+            unset($_SESSION['cart'][$position]);
+            $_SESSION['cart'] = array_values($_SESSION['cart']);
+        }
+    }
+    
 }
 
 ?>
