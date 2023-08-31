@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 10-Ago-2023 às 20:43
--- Versão do servidor: 10.4.27-MariaDB
--- versão do PHP: 8.1.12
+-- Tempo de geração: 31/08/2023 às 14:57
+-- Versão do servidor: 10.4.28-MariaDB
+-- Versão do PHP: 8.2.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -24,7 +24,7 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `dish`
+-- Estrutura para tabela `dish`
 --
 
 CREATE TABLE `dish` (
@@ -37,10 +37,20 @@ CREATE TABLE `dish` (
   `deleted_at` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Despejando dados para a tabela `dish`
+--
+
+INSERT INTO `dish` (`id`, `name`, `price`, `description`, `img`, `created_at`, `deleted_at`) VALUES
+(1, 'Picarones', 20, 'Lorem ipsum dolor sit amet, consectetur adipiscing', 'picarones.jpg', '2023-08-31 09:14:23', NULL),
+(2, 'Tacu Tacu', 30, '', 'tacutacu.jpg', '2023-08-31 09:34:24', NULL),
+(3, 'Ají de Galinha', 15, '', 'aji.jpg', '2023-08-31 09:34:24', NULL),
+(4, 'Cuy', 40, '', 'cuy.jpg', '2023-08-31 09:34:24', NULL);
+
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `dish_ingredient`
+-- Estrutura para tabela `dish_ingredient`
 --
 
 CREATE TABLE `dish_ingredient` (
@@ -55,7 +65,7 @@ CREATE TABLE `dish_ingredient` (
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `ingredient`
+-- Estrutura para tabela `ingredient`
 --
 
 CREATE TABLE `ingredient` (
@@ -69,7 +79,7 @@ CREATE TABLE `ingredient` (
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `order`
+-- Estrutura para tabela `orders`
 --
 
 CREATE TABLE `orders` (
@@ -88,7 +98,20 @@ CREATE TABLE `orders` (
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `user`
+-- Estrutura para tabela `order_dish`
+--
+
+CREATE TABLE `order_dish` (
+  `id` int(11) NOT NULL,
+  `orders_id` int(11) DEFAULT NULL,
+  `dish_id` int(11) DEFAULT NULL,
+  `quantity` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura para tabela `user`
 --
 
 CREATE TABLE `user` (
@@ -108,13 +131,13 @@ CREATE TABLE `user` (
 --
 
 --
--- Índices para tabela `dish`
+-- Índices de tabela `dish`
 --
 ALTER TABLE `dish`
   ADD PRIMARY KEY (`id`);
 
 --
--- Índices para tabela `dish_ingredient`
+-- Índices de tabela `dish_ingredient`
 --
 ALTER TABLE `dish_ingredient`
   ADD PRIMARY KEY (`id`),
@@ -122,34 +145,42 @@ ALTER TABLE `dish_ingredient`
   ADD KEY `ingredient_id` (`ingredient_id`);
 
 --
--- Índices para tabela `ingredient`
+-- Índices de tabela `ingredient`
 --
 ALTER TABLE `ingredient`
   ADD PRIMARY KEY (`id`);
 
 --
--- Índices para tabela `order`
+-- Índices de tabela `orders`
 --
-ALTER TABLE `order`
+ALTER TABLE `orders`
   ADD PRIMARY KEY (`id`),
   ADD KEY `dish_id` (`dish_id`),
   ADD KEY `user_id` (`user_id`);
 
 --
--- Índices para tabela `user`
+-- Índices de tabela `order_dish`
+--
+ALTER TABLE `order_dish`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `orders_id` (`orders_id`),
+  ADD KEY `dish_id` (`dish_id`);
+
+--
+-- Índices de tabela `user`
 --
 ALTER TABLE `user`
   ADD PRIMARY KEY (`id`);
 
 --
--- AUTO_INCREMENT de tabelas despejadas
+-- AUTO_INCREMENT para tabelas despejadas
 --
 
 --
 -- AUTO_INCREMENT de tabela `dish`
 --
 ALTER TABLE `dish`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de tabela `dish_ingredient`
@@ -164,9 +195,9 @@ ALTER TABLE `ingredient`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT de tabela `order`
+-- AUTO_INCREMENT de tabela `orders`
 --
-ALTER TABLE `order`
+ALTER TABLE `orders`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
@@ -176,22 +207,29 @@ ALTER TABLE `user`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- Restrições para despejos de tabelas
+-- Restrições para tabelas despejadas
 --
 
 --
--- Limitadores para a tabela `dish_ingredient`
+-- Restrições para tabelas `dish_ingredient`
 --
 ALTER TABLE `dish_ingredient`
   ADD CONSTRAINT `dish_ingredient_ibfk_1` FOREIGN KEY (`dish_id`) REFERENCES `dish` (`id`),
   ADD CONSTRAINT `dish_ingredient_ibfk_2` FOREIGN KEY (`ingredient_id`) REFERENCES `ingredient` (`id`);
 
 --
--- Limitadores para a tabela `order`
+-- Restrições para tabelas `orders`
 --
-ALTER TABLE `order`
+ALTER TABLE `orders`
   ADD CONSTRAINT `order_ibfk_1` FOREIGN KEY (`dish_id`) REFERENCES `dish` (`id`),
   ADD CONSTRAINT `order_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`);
+
+--
+-- Restrições para tabelas `order_dish`
+--
+ALTER TABLE `order_dish`
+  ADD CONSTRAINT `order_dish_ibfk_1` FOREIGN KEY (`orders_id`) REFERENCES `orders` (`id`),
+  ADD CONSTRAINT `order_dish_ibfk_2` FOREIGN KEY (`dish_id`) REFERENCES `dish` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
