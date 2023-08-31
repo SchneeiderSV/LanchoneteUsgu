@@ -76,3 +76,30 @@
     left: 2.5rem;
 }
 
+.foodView{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.foodDesc{
+    width: 90vw;
+    text-align: justify;
+}
+
+.quantLbl{
+    font-size: 1.3rem;
+    margin-right: 0.3rem;
+}
+.quantInp{
+    font-weight: bold;
+    text-align: center;
+    width: 3rem;
+    padding: 0.4rem;
+    appearance: none;
+    border-radius: 1rem;
+    border: 2px solid gray;
+    background-color: lightgray;
+}

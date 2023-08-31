@@ -35,25 +35,27 @@ if(isset($_GET['id'])){
     ?>
     
 
-<img class="foodImg" src="images/<?= $dish[0]['img'] ?>" alt="">
-<h1><?= $dish[0]['name'] ?></h1>
-<h2><?= $dish[0]['description'] ?></h2>
-<h2><?= $dish[0]['price'] ?> $</h2>
+<section class="foodView">
+    <img class="foodImg" src="images/<?= $dish[0]['img'] ?>" alt="">
+    <h1><?= $dish[0]['name'] ?></h1>
+    <h2 class="foodDesc"><?= $dish[0]['description'] ?></h2>
+    <h2>R$<?= $dish[0]['price'] ?>,00</h2>
 
 
-<form method="POST">
-    <label for="quantity">Quantidade</label>
-    <input type="number" value="1" min="1" name="quantity" id="quantity">
-<h2>Ingredientes:</h2>
-<?php if($ingredients){ foreach($ingredients as $ingredient){ ?>
-    <input type="checkbox" checked name="ingredients[<?= $ingredient['id'] ?>]" id="<?= $ingredient['name'] ?>">
-    <label for="<?= $ingredient['name'] ?>"><?= $ingredient['name'] ?></label>
-<?php } } ?>
-<input type="submit" name="cart" value="Adicionar ao carrinho">
+    <form method="POST">
+        <label class="quantLbl" for="quantity">Quantidade</label>
+        <input class="quantInp" type="number" value="1" min="1" name="quantity" id="quantity">
+        <h2>Ingredientes:</h2>
+        <?php if($ingredients){ foreach($ingredients as $ingredient){ ?>
+            <input type="checkbox" checked name="ingredients[<?= $ingredient['id'] ?>]" id="<?= $ingredient['name'] ?>">
+            <label for="<?= $ingredient['name'] ?>"><?= $ingredient['name'] ?></label>
+        <?php } } ?>
+        <input type="submit" name="cart" value="Adicionar ao carrinho">
 
-</form>
+    </form>
 
-<button>Finalizar Pedido</button>
+    <button>Finalizar Pedido</button>
+</section>
 
 <?php } ?>
 
