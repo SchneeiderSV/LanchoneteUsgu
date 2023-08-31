@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.1
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 31/08/2023 às 14:57
--- Versão do servidor: 10.4.28-MariaDB
--- Versão do PHP: 8.2.4
+-- Tempo de geração: 31-Ago-2023 às 19:13
+-- Versão do servidor: 10.4.27-MariaDB
+-- versão do PHP: 8.1.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -24,106 +24,92 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `dish`
+-- Estrutura da tabela `dishes`
 --
 
-CREATE TABLE `dish` (
+CREATE TABLE `dishes` (
   `id` int(11) NOT NULL,
   `name` varchar(50) NOT NULL,
   `price` float NOT NULL,
   `description` varchar(50) NOT NULL,
+  `size` varchar(50) NOT NULL,
+  `is_drink` tinyint(1) NOT NULL,
   `img` varchar(255) NOT NULL,
-  `created_at` datetime DEFAULT current_timestamp(),
-  `deleted_at` datetime DEFAULT NULL
+  `created_at` datetime DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Despejando dados para a tabela `dish`
---
-
-INSERT INTO `dish` (`id`, `name`, `price`, `description`, `img`, `created_at`, `deleted_at`) VALUES
-(1, 'Picarones', 20, 'Lorem ipsum dolor sit amet, consectetur adipiscing', 'picarones.jpg', '2023-08-31 09:14:23', NULL),
-(2, 'Tacu Tacu', 30, '', 'tacutacu.jpg', '2023-08-31 09:34:24', NULL),
-(3, 'Ají de Galinha', 15, '', 'aji.jpg', '2023-08-31 09:34:24', NULL),
-(4, 'Cuy', 40, '', 'cuy.jpg', '2023-08-31 09:34:24', NULL);
 
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `dish_ingredient`
+-- Estrutura da tabela `dishes_ingredients`
 --
 
-CREATE TABLE `dish_ingredient` (
+CREATE TABLE `dishes_ingredients` (
   `id` int(11) NOT NULL,
   `quantity` int(11) NOT NULL,
   `dish_id` int(11) NOT NULL,
   `ingredient_id` int(11) NOT NULL,
-  `created_at` datetime DEFAULT current_timestamp(),
-  `deleted_at` datetime DEFAULT NULL
+  `created_at` datetime DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `ingredient`
+-- Estrutura da tabela `ingredients`
 --
 
-CREATE TABLE `ingredient` (
+CREATE TABLE `ingredients` (
   `id` int(11) NOT NULL,
   `name` varchar(50) NOT NULL,
   `quantity` int(11) NOT NULL,
-  `created_at` datetime DEFAULT current_timestamp(),
-  `deleted_at` datetime DEFAULT NULL
+  `created_at` datetime DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `orders`
+-- Estrutura da tabela `orders`
 --
 
 CREATE TABLE `orders` (
   `id` int(11) NOT NULL,
   `total_price` float NOT NULL,
   `change_value` float NOT NULL,
+  `address` varchar(255) NOT NULL,
   `payment_method` int(11) NOT NULL,
   `payment_confirmation` int(11) NOT NULL,
   `status` int(11) NOT NULL,
-  `dish_id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
-  `created_at` datetime DEFAULT current_timestamp(),
-  `deleted_at` datetime DEFAULT NULL
+  `created_at` datetime DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `order_dish`
+-- Estrutura da tabela `orders_dishes`
 --
 
-CREATE TABLE `order_dish` (
+CREATE TABLE `orders_dishes` (
   `id` int(11) NOT NULL,
-  `orders_id` int(11) DEFAULT NULL,
-  `dish_id` int(11) DEFAULT NULL,
-  `quantity` int(11) DEFAULT NULL
+  `order_id` int(11) NOT NULL,
+  `dish_id` int(11) NOT NULL,
+  `quantity` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `user`
+-- Estrutura da tabela `users`
 --
 
-CREATE TABLE `user` (
+CREATE TABLE `users` (
   `id` int(11) NOT NULL,
   `name` varchar(50) NOT NULL,
   `email` varchar(50) NOT NULL,
   `pass` varchar(255) NOT NULL,
   `cpf` varchar(50) NOT NULL,
-  `address` varchar(255) NOT NULL,
   `is_adm` tinyint(1) NOT NULL,
-  `created_at` datetime DEFAULT current_timestamp(),
-  `deleted_at` datetime DEFAULT NULL
+  `created_at` datetime DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -131,67 +117,66 @@ CREATE TABLE `user` (
 --
 
 --
--- Índices de tabela `dish`
+-- Índices para tabela `dishes`
 --
-ALTER TABLE `dish`
+ALTER TABLE `dishes`
   ADD PRIMARY KEY (`id`);
 
 --
--- Índices de tabela `dish_ingredient`
+-- Índices para tabela `dishes_ingredients`
 --
-ALTER TABLE `dish_ingredient`
+ALTER TABLE `dishes_ingredients`
   ADD PRIMARY KEY (`id`),
   ADD KEY `dish_id` (`dish_id`),
   ADD KEY `ingredient_id` (`ingredient_id`);
 
 --
--- Índices de tabela `ingredient`
+-- Índices para tabela `ingredients`
 --
-ALTER TABLE `ingredient`
+ALTER TABLE `ingredients`
   ADD PRIMARY KEY (`id`);
 
 --
--- Índices de tabela `orders`
+-- Índices para tabela `orders`
 --
 ALTER TABLE `orders`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `dish_id` (`dish_id`),
   ADD KEY `user_id` (`user_id`);
 
 --
--- Índices de tabela `order_dish`
+-- Índices para tabela `orders_dishes`
 --
-ALTER TABLE `order_dish`
+ALTER TABLE `orders_dishes`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `orders_id` (`orders_id`),
-  ADD KEY `dish_id` (`dish_id`);
+  ADD KEY `dish_id` (`dish_id`),
+  ADD KEY `order_id` (`order_id`);
 
 --
--- Índices de tabela `user`
+-- Índices para tabela `users`
 --
-ALTER TABLE `user`
+ALTER TABLE `users`
   ADD PRIMARY KEY (`id`);
 
 --
--- AUTO_INCREMENT para tabelas despejadas
+-- AUTO_INCREMENT de tabelas despejadas
 --
 
 --
--- AUTO_INCREMENT de tabela `dish`
+-- AUTO_INCREMENT de tabela `dishes`
 --
-ALTER TABLE `dish`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
-
---
--- AUTO_INCREMENT de tabela `dish_ingredient`
---
-ALTER TABLE `dish_ingredient`
+ALTER TABLE `dishes`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT de tabela `ingredient`
+-- AUTO_INCREMENT de tabela `dishes_ingredients`
 --
-ALTER TABLE `ingredient`
+ALTER TABLE `dishes_ingredients`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de tabela `ingredients`
+--
+ALTER TABLE `ingredients`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
@@ -201,41 +186,40 @@ ALTER TABLE `orders`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT de tabela `user`
+-- AUTO_INCREMENT de tabela `orders_dishes`
 --
-ALTER TABLE `user`
+ALTER TABLE `orders_dishes`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- Restrições para tabelas despejadas
+-- AUTO_INCREMENT de tabela `users`
+--
+ALTER TABLE `users`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- Restrições para despejos de tabelas
 --
 
 --
--- Restrições para tabelas `dish_ingredient`
+-- Limitadores para a tabela `dishes_ingredients`
 --
-ALTER TABLE `dish_ingredient`
-  ADD CONSTRAINT `dish_ingredient_ibfk_1` FOREIGN KEY (`dish_id`) REFERENCES `dish` (`id`),
-  ADD CONSTRAINT `dish_ingredient_ibfk_2` FOREIGN KEY (`ingredient_id`) REFERENCES `ingredient` (`id`);
+ALTER TABLE `dishes_ingredients`
+  ADD CONSTRAINT `dishes_ingredients_ibfk_1` FOREIGN KEY (`dish_id`) REFERENCES `dishes` (`id`),
+  ADD CONSTRAINT `dishes_ingredients_ibfk_2` FOREIGN KEY (`ingredient_id`) REFERENCES `ingredients` (`id`);
 
 --
--- Restrições para tabelas `orders`
+-- Limitadores para a tabela `orders`
 --
 ALTER TABLE `orders`
-  ADD CONSTRAINT `order_ibfk_1` FOREIGN KEY (`dish_id`) REFERENCES `dish` (`id`),
-  ADD CONSTRAINT `order_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`);
+  ADD CONSTRAINT `orders_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`);
 
 --
--- Restrições para tabelas `order_dish`
+-- Limitadores para a tabela `orders_dishes`
 --
-ALTER TABLE `order_dish`
-  ADD CONSTRAINT `order_dish_ibfk_1` FOREIGN KEY (`orders_id`) REFERENCES `orders` (`id`),
-  ADD CONSTRAINT `order_dish_ibfk_2` FOREIGN KEY (`dish_id`) REFERENCES `dish` (`id`);
-
-INSERT INTO `dish` (`id`, `name`, `price`, `description`, `img`, `created_at`, `deleted_at`) VALUES
-(1, 'Picarones', 20, 'Lorem ipsum dolor sit amet, consectetur adipiscing', 'picarones.jpg', '2023-08-31 09:14:23', NULL),
-(2, 'Tacu Tacu', 30, '', 'tacutacu.jpg', '2023-08-31 09:34:24', NULL),
-(3, 'Ají de Galinha', 15, '', 'aji.jpg', '2023-08-31 09:34:24', NULL),
-(4, 'Cuy', 40, '', 'cuy.jpg', '2023-08-31 09:34:24', NULL);
+ALTER TABLE `orders_dishes`
+  ADD CONSTRAINT `orders_dishes_ibfk_1` FOREIGN KEY (`dish_id`) REFERENCES `dishes` (`id`),
+  ADD CONSTRAINT `orders_dishes_ibfk_2` FOREIGN KEY (`order_id`) REFERENCES `orders` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
