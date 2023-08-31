@@ -34,15 +34,25 @@
 
 ?>
 
-<h1>Login</h1>
-
 <form method="POST">
-    <input type="email" name="email" placeholder="Email">
-    <input type="password" name="password" placeholder="Senha">
-
-    <button>Enviar</button>
+    <div class="logincontainer">
+        <h1 class="betterh1">Login</h1>
+        <div class="loginitems">
+            <div class="loginitem">
+                <input type="email" name="email" placeholder="Email">
+            </div>
+            <div class="loginitem">
+                <input type="password" name="password" placeholder="Senha">
+            </div>
+            <div class="loginitem">
+                <button>Enviar</button>
+            </div>
+            <div class="loginitem">
+                <span class="logintext">Ainda não possui uma conta? Cadastre-se <a href="register.php">aqui</a></span>
+            </div>
+        </div>
+    </div>
+    
 </form>
-
-<p>Ainda não possui uma conta? Cadastre-se <a href="register.php">aqui</a></p>
 
 <?php include('footer.php'); ?>

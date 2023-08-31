@@ -66,18 +66,34 @@ if(isset($_POST['name'])){
 
 ?>
 
-<h1>Register</h1>
-
 <form method="POST">
-    <input type="text" name="name" placeholder="Nome">
-    <input type="email" name="email" placeholder="Email">
-    <input type="password" name="password" placeholder="Senha">
-    <input type="text" name="cpf" placeholder="CPF">
-    <input type="text" name="address" placeholder="Endereço">
-
-    <button>Enviar</button>
+    <div class="logincontainer">
+        <h1 class="betterh1">Register</h1>
+            <div class="loginitems">
+                <div class="loginitem">
+                    <input type="text" name="name" placeholder="Nome">
+                </div>
+                <div class="loginitem">
+                    <input type="email" name="email" placeholder="Email">   
+                </div>
+                <div class="loginitem">
+                    <input type="password" name="password" placeholder="Senha">
+                </div>
+                <div class="loginitem">
+                    <input type="text" name="cpf" placeholder="CPF">
+                </div>
+                <div class="loginitem">
+                    <input type="text" name="address" placeholder="Endereço">
+                </div>
+                <div class="loginitem">
+                    <button>Enviar</button>
+                </div>
+                <div class="loginitem">
+                    <span class="logintext">Já possui uma conta? Clique <a href="login.php">aqui</a></span>
+                </div>
+            </div>
+    </div>
+    
 </form>
-
-<p>Já possui uma conta? Clique <a href="login.php">aqui</a></p>
 
 <?php include('footer.php'); ?>

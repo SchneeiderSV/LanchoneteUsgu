@@ -38,7 +38,7 @@ if(isset($_GET['id'])){
 <img width="200" height="200" src="images/<?= $dish[0]['img'] ?>" alt="">
 <h1><?= $dish[0]['name'] ?></h1>
 <h2><?= $dish[0]['description'] ?></h2>
-<h2><?= $dish[0]['price'] ?></h2>
+<h2><?= $dish[0]['price'] ?> $</h2>
 
 
 <form method="POST">
