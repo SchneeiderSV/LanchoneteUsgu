@@ -68,25 +68,26 @@ if(isset($_POST['name'])){
 
 <form method="POST">
     <div class="logincontainer">
+        <h1 class="logo">D'MANOS MERENDEROS</h1>
         <h1 class="betterh1">Register</h1>
             <div class="loginitems">
                 <div class="loginitem">
-                    <input type="text" name="name" placeholder="Nome">
+                    <input class="logInp" type="text" name="name" placeholder="Nome">
                 </div>
                 <div class="loginitem">
-                    <input type="email" name="email" placeholder="Email">   
+                    <input class="logInp" type="email" name="email" placeholder="Email">   
                 </div>
                 <div class="loginitem">
-                    <input type="password" name="password" placeholder="Senha">
+                    <input class="logInp" type="password" name="password" placeholder="Senha">
                 </div>
                 <div class="loginitem">
-                    <input type="text" name="cpf" placeholder="CPF">
+                    <input class="logInp" type="text" name="cpf" placeholder="CPF">
                 </div>
                 <div class="loginitem">
-                    <input type="text" name="address" placeholder="Endereço">
+                    <input class="logInp" type="text" name="address" placeholder="Endereço">
                 </div>
                 <div class="loginitem">
-                    <button>Enviar</button>
+                    <button class="inpBtn">Enviar</button>
                 </div>
                 <div class="loginitem">
                     <span class="logintext">Já possui uma conta? Clique <a href="login.php">aqui</a></span>

@@ -36,6 +36,7 @@
 
 <form method="POST">
     <div class="logincontainer">
+        <h1 class="logo">D'MANOS MERENDEROS</h1>
         <h1 class="logTitle">LogIn</h1>
         <div class="loginitems">
             <div class="loginitem">
