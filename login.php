@@ -36,16 +36,16 @@
 
 <form method="POST">
     <div class="logincontainer">
-        <h1 class="betterh1">Login</h1>
+        <h1 class="logTitle">LogIn</h1>
         <div class="loginitems">
             <div class="loginitem">
-                <input type="email" name="email" placeholder="Email">
+                <input class="logInp" type="email" name="email" placeholder="Email">
             </div>
             <div class="loginitem">
-                <input type="password" name="password" placeholder="Senha">
+                <input class="logInp" type="password" name="password" placeholder="Senha">
             </div>
             <div class="loginitem">
-                <button>Enviar</button>
+                <button class="inpBtn">Enviar</button>
             </div>
             <div class="loginitem">
                 <span class="logintext">Ainda não possui uma conta? Cadastre-se <a href="register.php">aqui</a></span>

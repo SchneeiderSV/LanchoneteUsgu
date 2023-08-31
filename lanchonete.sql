@@ -41,12 +41,6 @@ CREATE TABLE `dish` (
 -- Despejando dados para a tabela `dish`
 --
 
-INSERT INTO `dish` (`id`, `name`, `price`, `description`, `img`, `created_at`, `deleted_at`) VALUES
-(1, 'Picarones', 20, 'Lorem ipsum dolor sit amet, consectetur adipiscing', 'picarones.jpg', '2023-08-31 09:14:23', NULL),
-(2, 'Tacu Tacu', 30, '', 'tacutacu.jpg', '2023-08-31 09:34:24', NULL),
-(3, 'Ají de Galinha', 15, '', 'aji.jpg', '2023-08-31 09:34:24', NULL),
-(4, 'Cuy', 40, '', 'cuy.jpg', '2023-08-31 09:34:24', NULL);
-
 -- --------------------------------------------------------
 
 --
@@ -182,6 +176,13 @@ ALTER TABLE `user`
 ALTER TABLE `dish`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
+
+INSERT INTO `dish` (`id`, `name`, `price`, `description`, `img`, `created_at`, `deleted_at`) VALUES
+(1, 'Picarones', 20, 'Lorem ipsum dolor sit amet, consectetur adipiscing', 'picarones.jpg', '2023-08-31 09:14:23', NULL),
+(2, 'Tacu Tacu', 30, '', 'tacutacu.jpg', '2023-08-31 09:34:24', NULL),
+(3, 'Ají de Galinha', 15, '', 'aji.jpg', '2023-08-31 09:34:24', NULL),
+(4, 'Cuy', 40, '', 'cuy.jpg', '2023-08-31 09:34:24', NULL);
+
 --
 -- AUTO_INCREMENT de tabela `dish_ingredient`
 --
@@ -231,11 +232,7 @@ ALTER TABLE `order_dish`
   ADD CONSTRAINT `order_dish_ibfk_1` FOREIGN KEY (`orders_id`) REFERENCES `orders` (`id`),
   ADD CONSTRAINT `order_dish_ibfk_2` FOREIGN KEY (`dish_id`) REFERENCES `dish` (`id`);
 
-INSERT INTO `dish` (`id`, `name`, `price`, `description`, `img`, `created_at`, `deleted_at`) VALUES
-(1, 'Picarones', 20, 'Lorem ipsum dolor sit amet, consectetur adipiscing', 'picarones.jpg', '2023-08-31 09:14:23', NULL),
-(2, 'Tacu Tacu', 30, '', 'tacutacu.jpg', '2023-08-31 09:34:24', NULL),
-(3, 'Ají de Galinha', 15, '', 'aji.jpg', '2023-08-31 09:34:24', NULL),
-(4, 'Cuy', 40, '', 'cuy.jpg', '2023-08-31 09:34:24', NULL);
+
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
