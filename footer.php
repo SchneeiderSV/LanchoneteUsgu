@@ -20,7 +20,7 @@
                 echo "<div class='footerItem'>";
                     echo "<a href='logout.php'><img src='assets/logout.png' width='35'></a>";
                 echo "</div>";
-                if($_SESSION['is_adm'] = 1){
+                if(!isset($_SESSION['id']) || $_SESSION['admin'] != 1){ /* aqui n funfa direito não sei pq */
                     echo "<div class='footerItem'>";
                         echo "<a href='settings.php'><img src='assets/settings.png' width='35'></a>";
                     echo "</div>";
