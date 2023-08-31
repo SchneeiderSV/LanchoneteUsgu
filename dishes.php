@@ -13,6 +13,7 @@
         $filename = Database::select('dish', ['img'], ['id' => $_GET['delete']])[0]['img']; 
         Database::delete('dish', ['id'=> $_GET['delete']]);
         unlink('images/'.$filename);
+        Auth::redirect("dishes.php");
     }
     if(isset($_POST['name'])){
         require_once('utils/functions.php');
@@ -124,7 +125,8 @@
                 <div class="ingredient">
                     <h2><?= $dish['name'] ?></h2>
                     <p><?= $dish['description'] ?></p>
-                    <a href="dishes.php?delete=<?= $dish['id'] ?>">excluir</a>
+                    <a href="editDish.php?id=<?= $dish['id'] ?>">Editar</a>
+                    <a href="dishes.php?delete=<?= $dish['id'] ?>">Excluir</a>
                 </div>
             <?php } } ?>
         </div>

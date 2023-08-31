@@ -72,7 +72,7 @@ CREATE TABLE `ingredient` (
 -- Estrutura da tabela `order`
 --
 
-CREATE TABLE `order` (
+CREATE TABLE `orders` (
   `id` int(11) NOT NULL,
   `total_price` float NOT NULL,
   `change_value` float NOT NULL,

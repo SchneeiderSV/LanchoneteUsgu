@@ -53,6 +53,31 @@ class Database {
         return $conn->lastInsertId();
     }
 
+    public static function update($table, $data, $conditions) {
+        $conn = self::getConnection();
+
+        $setColumns = [];
+        foreach ($data as $column => $value) {
+            $setColumns[] = "$column = ?";
+        }
+
+        $where = [];
+        foreach ($conditions as $column => $value) {
+            $where[] = "$column = ?";
+        }
+
+        $setQuery = implode(', ', $setColumns);
+        $whereQuery = implode(' AND ', $where);
+
+        $query = "UPDATE $table SET $setQuery WHERE $whereQuery";
+
+        $stmt = $conn->prepare($query);
+        $values = array_merge(array_values($data), array_values($conditions));
+        $stmt->execute($values);
+
+        return $stmt->rowCount();
+    }
+
     public static function delete($table, $conditions) {
         $conn = self::getConnection();
 

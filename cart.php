@@ -13,7 +13,7 @@
     }
 
     if (!isset($_SESSION['cart'])) {
-        header("location: cartNone.php");
+       echo "Nenhum item adicionado ao carrinho!";
     }
 
 ?>
@@ -22,7 +22,7 @@
 
 <div class="list">
 
-    <?php foreach($_SESSION['cart'] as $index => $item){
+    <?php if(isset($_SESSION['cart'])) foreach($_SESSION['cart'] as $index => $item){
         $dish = Database::select('dish', ['id', 'name', 'price', 'description', 'img'], ["id" => $item['id']])[0];
     ?>
 

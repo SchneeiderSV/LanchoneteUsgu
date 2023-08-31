@@ -5,7 +5,7 @@ require_once('utils/Database.php');
 require_once('utils/Cart.php');
 
 if(!isset($_SESSION['cart'])){
-    header("location: index.php");
+    Auth::redirect("index.php");
 }
 
 Auth::checkAuth();

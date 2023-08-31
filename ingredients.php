@@ -69,7 +69,8 @@
                 <div class="ingredient">
                     <h2><?= $ingredient['name'] ?></h2>
                     <p>Quantidade: <?= $ingredient['quantity'] ?></p>
-                    <a href="ingredients.php?delete=<?= $ingredient['id'] ?>">excluir</a>
+                    <a href="editIngredient.php?id=<?= $ingredient['id'] ?>">Editar</a>
+                    <a href="ingredients.php?delete=<?= $ingredient['id'] ?>">Excluir</a>
                 </div>
             <?php } } ?>
         </div>
