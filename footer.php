@@ -26,9 +26,9 @@
                     </div> <?php
                 }
             } else{ ?>
-                <div class='footerItem'>;
-                    <a href='login.php'><img src='assets/user.png' width='35'></a>;
-                </div>; <?php
+                <div class='footerItem'>
+                    <a href='login.php'><img src='assets/user.png' width='35'></a>
+                </div> <?php
             }
         ?>
     </div>
