@@ -83,33 +83,52 @@
 
 ?>
 
-<h1>Pratos</h1>
-
 <form method="POST" enctype="multipart/form-data">
-    <input type="text" name="name" placeholder="Nome">
-    <input type="text" name="price" placeholder="Preço">
-    <textarea name="desc" id="" cols="30" rows="10"></textarea>
-
-    <label for="img">Imagem do prato</label>
-    <input type="file" name="img" id="img">
-    <?php if($ingredients){ foreach ($ingredients as $ingredient) { ?>  
-        <label for="<?= $ingredient['id']?>"><?= $ingredient['name']?></label>
-        <input type="number" name="ingredients[<?= $ingredient['id']?>]" id="<?= $ingredient['id']?>" placeholder="Quantidade">
-    <?php } } ?>
-
-    <button>Enviar</button>
-</form>
-
-<div class="list">
-
-    <?php if($dishes) {
-        foreach($dishes as $dish) { ?>
-        <div class="dish">
-            <h2><?= $dish['name'] ?></h2>
-            <p><?= $dish['description'] ?></p>
-            <a href="dishes.php?delete=<?= $dish['id'] ?>">excluir</a>
+    <div class="ingredientscontainer">
+        <h1 class="betterh1">Dishes</h1>
+        <div class="dishesitems">
+            <div class="box">
+                <div class="ingredientitem">
+                    <input type="text" name="name" placeholder="Nome">
+                </div>
+                <div class="ingredientitem">
+                    <input type="text" name="price" placeholder="Preço">
+                </div>
+                <div class="ingredientsitemexception">
+                    <label for="img">Imagem do prato</label>
+                    <input type="file" name="img" id="img">
+                </div>
+            </div>  
+            <div class="ingredientsitem">
+                <textarea name="desc" id="" cols="20" rows="10"></textarea>
+            </div>
         </div>
-    <?php } } ?>
-</div>
+
+
+        <div class="existingingredients">
+            <?php if($ingredients){ foreach ($ingredients as $ingredient) { ?>  
+                <div class="existingitem">
+                    <label for="<?= $ingredient['id']?>"><?= $ingredient['name']?></label>
+                    <input type="number" name="ingredients[<?= $ingredient['id']?>]" id="<?= $ingredient['id']?>" placeholder="Quantidade">
+                </div>
+            <?php } } ?>
+
+            <button>Enviar</button>
+        </div>
+        
+
+        
+        <div class="ingredientslist">
+            <?php if($dishes) {
+                foreach($dishes as $dish) { ?>
+                <div class="ingredient">
+                    <h2><?= $dish['name'] ?></h2>
+                    <p><?= $dish['description'] ?></p>
+                    <a href="dishes.php?delete=<?= $dish['id'] ?>">excluir</a>
+                </div>
+            <?php } } ?>
+        </div>
+    </div>
+</form>
 
 <?php include('footer.php'); ?>

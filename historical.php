@@ -5,7 +5,7 @@
 
 ?>
 
-<!-- historical purchase info to visualize -->
+<!-- historical purchase info to visualize / muito banco de dados pra mim :/ -->
 
 
 <?php

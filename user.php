@@ -5,7 +5,7 @@
 
 ?>
 
-<!-- user info to update -->
+<!-- user info to update / muito banco de dados pra mim :/ -->
 
 
 <?php

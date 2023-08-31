@@ -47,25 +47,35 @@
 
 ?>
 
-<h1>Ingredientes</h1>
+
 
 <form method="POST">
-    <input type="text" name="name" placeholder="Nome">
-    <input type="number" name="qty" placeholder="Quantidade">
-
-    <button>Enviar</button>
+    <div class="ingredientscontainer">
+        <h1 class="betterh1">Ingredientes</h1>
+        <div class="ingredientsitems">
+            <div class="ingredientitem">
+                <input type="text" name="name" placeholder="Nome">
+            </div>
+            <div class="ingredientitem">
+                <input type="number" name="qty" placeholder="Quantidade">
+            </div>
+            <div class="ingredientsitem">
+                <button>Enviar</button>
+            </div>
+        </div>
+        <div class="ingredientslist">
+            <?php if($ingredients) {
+                foreach($ingredients as $ingredient) { ?>
+                <div class="ingredient">
+                    <h2><?= $ingredient['name'] ?></h2>
+                    <p>Quantidade: <?= $ingredient['quantity'] ?></p>
+                    <a href="ingredients.php?delete=<?= $ingredient['id'] ?>">excluir</a>
+                </div>
+            <?php } } ?>
+        </div>
+    </div>   
 </form>
 
-<div class="list">
 
-    <?php if($ingredients) {
-        foreach($ingredients as $ingredient) { ?>
-        <div class="ingredient">
-            <h2><?= $ingredient['name'] ?></h2>
-            <p><?= $ingredient['quantity'] ?></p>
-            <a href="ingredients.php?delete=<?= $ingredient['id'] ?>">excluir</a>
-        </div>
-    <?php } } ?>
-</div>
 
 <?php include('footer.php'); ?>
