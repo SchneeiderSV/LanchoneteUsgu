@@ -1,30 +1,32 @@
-
-
-
-</body>
-    <div class="footerContainer">
+</div>
+<div class="footerContainer">
         <div class="footerItem">
-            <a href="index.php"><img src="assets/house.png" width="35"></a>
+            <a href="index.php"><i class='bx bxs-home'></i></a>
         </div> 
         <?php 
             if(isset($_SESSION['id'])){ ?>
                 <div class='footerItem'>
-                    <a href='cart.php'><img src='assets/shopcart.png' width='35'></a>
+                    <a href='cart.php'><i class='bx bxs-cart'></i></a>
                 </div>
+                
                 <div class='footerItem'>
-                    <a href='history.php'><img src='assets/historical.png' width='35'></a>
+                    <a href='history.php'><i class='bx bx-history' ></i></a>
                 </div>
+
                 <div class='footerItem'>
-                    <a href='user.php'><img src='assets/user.png' width='35'></a>
+                    <a href='user.php'><i class='bx bxs-user'></i></a>
                 </div>
-                <div class='footerItem'>
-                    <a href='logout.php'><img src='assets/logout.png' width='35'></a>
-                </div> <?php
-                if(isset($_SESSION['admin']) && $_SESSION['admin'] == 1){ ?>
+
+                <?php if(isset($_SESSION['admin']) && $_SESSION['admin'] == 1){ ?>
                     <div class='footerItem'>
-                        <a href='settings.php'><img src='assets/settings.png' width='35'></a>
-                    </div> <?php
-                }
+                        <a href='settings.php'><i class='bx bxs-cog' ></i></a>
+                    </div>
+                <?php } ?>
+
+                <div class='footerItem'>
+                    <a href='logout.php'><i class='bx bxs-exit'></i></a>
+                </div>
+            <?php     
             } else{ ?>
                 <div class='footerItem'>
                     <a href='login.php'><img src='assets/user.png' width='35'></a>
@@ -32,4 +34,6 @@
             }
         ?>
     </div>
+
+</body>
 </html>

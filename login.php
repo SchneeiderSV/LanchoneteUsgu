@@ -34,13 +34,16 @@
 
 ?>
 
-<h1>Entrar</h1>
 
-<form method="POST">
-    <input type="email" name="email" placeholder="Email">
-    <input type="password" name="password" placeholder="Senha">
+<form class="center" method="POST">
+    <h1>Entrar</h1>
 
-    <button>Entrar</button>
+    <input class="input" type="email" name="email" placeholder="Email">
+    <input class="input" type="password" name="password" placeholder="Senha">
+
+    <button class="inputBtn">Entrar</button>
+
+    <p>Ainda não possui uma conta? Clique <a href="register.php">aqui</a></p>
 </form>
 
 <?php if (!empty($errors)){ ?>

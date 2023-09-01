@@ -61,15 +61,15 @@ if(isset($_POST['name'])){
 }
 ?>
 
-<h1>Registrar-se</h1>
+<form class="center" method="POST">
+    <h1>Registrar-se</h1>
 
-<form method="POST">
-    <input type="text" name="cpf" placeholder="CPF" required>
-    <input type="text" name="name" placeholder="Nome" required>
-    <input type="email" name="email" placeholder="Email" required>
-    <input type="password" name="password" placeholder="Senha" required>
+    <input class="input" type="text" name="cpf" placeholder="CPF" required>
+    <input class="input" type="text" name="name" placeholder="Nome" required>
+    <input class="input" type="email" name="email" placeholder="Email" required>
+    <input class="input" type="password" name="password" placeholder="Senha" required>
 
-    <button>Criar conta</button>
+    <button class="inputBtn">Criar conta</button>
 </form>
 
 <?php if (!empty($errors)){ ?>

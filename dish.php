@@ -35,27 +35,39 @@ if(isset($_GET['id'])){
     ?>
     
 
-<section class="foodView">
-    <img class="foodImg" src="images/<?= $dish[0]['img'] ?>" alt="">
-    <h1><?= $dish[0]['name'] ?></h1>
-    <h2 class="foodDesc"><?= $dish[0]['description'] ?></h2>
-    <h2>R$<?= $dish[0]['price'] ?>,00</h2>
+<div class="dishInfo">
+    <img class="img2" src="images/<?= $dish[0]['img'] ?>" alt="">
 
 
     <form method="POST">
-        <label class="quantLbl" for="quantity">Quantidade</label>
-        <input class="quantInp" type="number" value="1" min="1" name="quantity" id="quantity">
-        <h2>Ingredientes:</h2>
-        <?php if($ingredients){ foreach($ingredients as $ingredient){ ?>
-            <input type="checkbox" checked name="ingredients[<?= $ingredient['id'] ?>]" id="<?= $ingredient['name'] ?>">
-            <label for="<?= $ingredient['name'] ?>"><?= $ingredient['name'] ?></label>
-        <?php } } ?>
-        <input type="submit" name="cart" value="Adicionar ao carrinho">
+        <h1><?= $dish[0]['name'] ?></h1>
+        <h2 class="dishDesc"><?= $dish[0]['description'] ?></h2>
+        <h2 class="price">R$<?= $dish[0]['price'] ?>,00</h2>
 
+        <div class="inputGroup">
+            <label class="lbl" for="quantity">Quantidade</label>
+            <input class="quantityInput" type="number" value="1" min="1" name="quantity" id="quantity">
+        </div>
+        <div class="ingredientsList">
+        <h2>Ingredientes:</h2>
+
+        <?php if($ingredients){ foreach($ingredients as $ingredient){ ?>
+            <div class="inputGroup ingredientCheckbox">
+                <input type="checkbox" checked name="ingredients[<?= $ingredient['id'] ?>]" id="<?= $ingredient['name'] ?>">
+                <label for="<?= $ingredient['name'] ?>"><?= $ingredient['name'] ?></label>
+            </div>
+
+        <?php } } ?>
+        </div>
+
+        <div class="center">
+            <input class="btn" type="submit" name="cart" value="Adicionar ao carrinho">
+            <button class="btn">Finalizar Pedido</button>
+        </div>
+        
     </form>
 
-    <button>Finalizar Pedido</button>
-</section>
+</div>
 
 <?php } ?>
 
