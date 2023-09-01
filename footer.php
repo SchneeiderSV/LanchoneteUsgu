@@ -12,7 +12,7 @@
                     <a href='cart.php'><img src='assets/shopcart.png' width='35'></a>
                 </div>
                 <div class='footerItem'>
-                    <a href='historical.php'><img src='assets/historical.png' width='35'></a>
+                    <a href='history.php'><img src='assets/historical.png' width='35'></a>
                 </div>
                 <div class='footerItem'>
                     <a href='user.php'><img src='assets/user.png' width='35'></a>

@@ -8,7 +8,7 @@ require_once("utils/Cart.php");
 
 if(isset($_GET['id'])){
     $selectedId = $_GET['id'];
-    $dish = Database::select('dish', ['id', 'name', 'description', 'price', 'img'], ["id" => $selectedId]);
+    $dish = Database::select('dishes', ['id', 'name', 'description', 'price', 'img'], ["id" => $selectedId]);
 
     if(!$dish[0]['id']) Auth::redirect();
 
@@ -26,11 +26,11 @@ if(isset($_GET['id'])){
         }
     }
 
-    $dishIngredients = Database::select('dish_ingredient', ['ingredient_id'], ["dish_id" => $selectedId]);
+    $dishIngredients = Database::select('dishes_ingredients', ['ingredient_id'], ["dish_id" => $selectedId]);
 
     $ingredients = [];
     foreach ($dishIngredients as $ingredient) {
-        $ingredients[$ingredient["ingredient_id"]] = Database::select('ingredient', ['id', 'name', 'quantity'], ["id" => $ingredient["ingredient_id"]])[0];
+        $ingredients[$ingredient["ingredient_id"]] = Database::select('ingredients', ['id', 'name', 'quantity'], ["id" => $ingredient["ingredient_id"]])[0];
     }
     ?>
     

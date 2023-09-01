@@ -5,8 +5,7 @@
     Auth::checkAuth();
 
 
-    $users = Database::select('order', ['*']);
-    var_dump($users);
+    $orders = Database::select('orders', ['*'], ['user_id' => $_SESSION['id']]);
     if(!$orders) echo "Nenhum pedido foi feito ainda!";
 ?>
 

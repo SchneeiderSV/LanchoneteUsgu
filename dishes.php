@@ -9,12 +9,13 @@
     if(isset($_GET['delete'])){
         require_once('utils/Database.php');
         
-        Database::delete('dish_ingredient', ['dish_id' => $_GET['delete']]);
-        $filename = Database::select('dish', ['img'], ['id' => $_GET['delete']])[0]['img']; 
-        Database::delete('dish', ['id'=> $_GET['delete']]);
+        Database::delete('dishes_ingredients', ['dish_id' => $_GET['delete']]);
+        $filename = Database::select('dishes', ['img'], ['id' => $_GET['delete']])[0]['img']; 
+        Database::delete('dishes', ['id'=> $_GET['delete']]);
         unlink('images/'.$filename);
         Auth::redirect("dishes.php");
     }
+
     if(isset($_POST['name'])){
         require_once('utils/functions.php');
 
@@ -58,7 +59,7 @@
                 "img" => $newName,
             ];
 
-            $dishId = Database::insert('dish', $data);
+            $dishId = Database::insert('dishes', $data);
             if(!$dishId){
                 echo '<script>alert("Erro!")</script>';
             }
@@ -70,17 +71,15 @@
                     "quantity" => $quantity,
                 ];
 
-                Database::insert('dish_ingredient', $currentData);
+                Database::insert('dishes_ingredients', $currentData);
             }
 
             
-        } else {
-            var_dump($errors);
         }
     }
 
-    $dishes = Database::selectAll("dish");
-    $ingredients = Database::selectAll("ingredient");
+    $dishes = Database::selectAll("dishes");
+    $ingredients = Database::selectAll("ingredients");
 
 ?>
 
@@ -132,5 +131,15 @@
         </div>
     </div>
 </form>
+
+<?php if (!empty($errors)){ ?>
+    <div class="errors">
+        <ul>
+            <?php foreach ($errors as $error): ?>
+            <li><?= $error ?></li>
+            <?php endforeach; ?>
+        </ul>
+    </div>
+<?php } ?>
 
 <?php include('footer.php'); ?>

@@ -93,6 +93,36 @@ class Database {
 
         return $stmt->rowCount();
     }
+
+    public static function rawQuery($query){
+        $conn = self::getConnection();
+
+        $stmt = $conn->prepare($query);
+        $stmt->execute();
+
+        return $stmt->fetchAll();
+    }
+
+    public static function join($mainTable, $mainColumn, $joinTable, $joinColumn, $selectColumns, $conditions = []) {
+        $conn = self::getConnection();
+
+        $selectCols = implode(', ', $selectColumns);
+        $query = "SELECT $selectCols FROM $mainTable
+                  INNER JOIN $joinTable ON $mainTable.$mainColumn = $joinTable.$joinColumn";
+
+        if (!empty($conditions)) {
+            $where = [];
+            foreach ($conditions as $column => $value) {
+                $where[] = "$mainTable.$column = ?";
+            }
+            $query .= " WHERE " . implode(' AND ', $where);
+        }
+
+        $stmt = $conn->prepare($query);
+        $stmt->execute(array_values($conditions));
+
+        return $stmt->fetchAll();
+    }
 }
 
 ?>

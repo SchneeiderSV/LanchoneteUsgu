@@ -21,39 +21,36 @@
     
         if(empty($errors)){
 
-            $user = Database::select('user', ['id', 'email', 'pass', 'cpf', 'address', 'is_adm', 'name'], ["email" => $email]);
+            $user = Database::select('users', ['id', 'email', 'pass', 'cpf', 'is_adm', 'name'], ["email" => $email])[0];
 
-            if($user[0] && password_verify($password, $user[0]['pass'])){
-                Auth::login($user[0]);
+            if($user && password_verify($password, $user['pass'])){
+                Auth::login($user);
                 Auth::redirect();
+            } else {
+                $errors["usuario"] = "Email ou senha incorretos";
             }
-        } else {
-            var_dump($errors);
         }
     }
 
 ?>
 
+<h1>Entrar</h1>
+
 <form method="POST">
-    <div class="logincontainer">
-        <h1 class="logo">D'MANOS MERENDEROS</h1>
-        <h1 class="logTitle">LogIn</h1>
-        <div class="loginitems">
-            <div class="loginitem">
-                <input class="logInp" type="email" name="email" placeholder="Email">
-            </div>
-            <div class="loginitem">
-                <input class="logInp" type="password" name="password" placeholder="Senha">
-            </div>
-            <div class="loginitem">
-                <button class="inpBtn">Enviar</button>
-            </div>
-            <div class="loginitem">
-                <span class="logintext">Ainda não possui uma conta? Cadastre-se <a href="register.php">aqui</a></span>
-            </div>
-        </div>
-    </div>
-    
+    <input type="email" name="email" placeholder="Email">
+    <input type="password" name="password" placeholder="Senha">
+
+    <button>Entrar</button>
 </form>
+
+<?php if (!empty($errors)){ ?>
+    <div class="errors">
+        <ul>
+            <?php foreach ($errors as $error): ?>
+            <li><?= $error ?></li>
+            <?php endforeach; ?>
+        </ul>
+    </div>
+<?php } ?>
 
 <?php include('footer.php'); ?>

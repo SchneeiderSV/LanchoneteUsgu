@@ -11,7 +11,6 @@ if(isset($_POST['name'])){
     $email = $_POST['email'];
     $password = $_POST['password'];
     $cpf = $_POST['cpf'];
-    $address = $_POST['address'];
 
     $errors = [];
 
@@ -31,16 +30,12 @@ if(isset($_POST['name'])){
         $errors['cpf'] = 'O cpf é obrigatório';
     }
 
-    if(!validate($address, 'string')){
-        $errors['name'] = 'O endereço é obrigatório';
-    }
-
-
     if(empty($errors)){
-        $user = Database::select('user', ['id'], ["email" => $email]);
+        $user = Database::select('users', ['id'], ["email" => $email]);
         if($user){
             echo "<script>alert('O email informado ja esta cadastrado')</script>";
-            return;
+            header("Refresh: 3; register.php");
+            die();
         }
         $passwordHash = password_hash($password, PASSWORD_DEFAULT);
         $data = [
@@ -48,11 +43,10 @@ if(isset($_POST['name'])){
             "email" => $email,
             "pass" => $passwordHash,
             "cpf" => $cpf,
-            "address" => $address,
         ];
 
-        $userId = Database::insert('user', $data);
-        $userData = Database::selectAll('user');
+        $userId = Database::insert('users', $data);
+        $userData = Database::selectAll('users');
 
         if($userId){
             echo "<script>alert('O usuario foi criado com sucesso!')</script>";
@@ -60,41 +54,33 @@ if(isset($_POST['name'])){
             Auth::redirect();
         } else {
             echo "<script>alert('O usuario não foi criado. Erro desconhecido!')</script>";
+            header("Refresh: 3; register.php");
+            die();
         }
     }
 }
-
 ?>
 
+<h1>Registrar-se</h1>
+
 <form method="POST">
-    <div class="logincontainer">
-        <h1 class="logo">D'MANOS MERENDEROS</h1>
-        <h1 class="betterh1">Register</h1>
-            <div class="loginitems">
-                <div class="loginitem">
-                    <input class="logInp" type="text" name="name" placeholder="Nome">
-                </div>
-                <div class="loginitem">
-                    <input class="logInp" type="email" name="email" placeholder="Email">   
-                </div>
-                <div class="loginitem">
-                    <input class="logInp" type="password" name="password" placeholder="Senha">
-                </div>
-                <div class="loginitem">
-                    <input class="logInp" type="text" name="cpf" placeholder="CPF">
-                </div>
-                <div class="loginitem">
-                    <input class="logInp" type="text" name="address" placeholder="Endereço">
-                </div>
-                <div class="loginitem">
-                    <button class="inpBtn">Enviar</button>
-                </div>
-                <div class="loginitem">
-                    <span class="logintext">Já possui uma conta? Clique <a href="login.php">aqui</a></span>
-                </div>
-            </div>
-    </div>
-    
+    <input type="text" name="cpf" placeholder="CPF" required>
+    <input type="text" name="name" placeholder="Nome" required>
+    <input type="email" name="email" placeholder="Email" required>
+    <input type="password" name="password" placeholder="Senha" required>
+
+    <button>Criar conta</button>
 </form>
+
+<?php if (!empty($errors)){ ?>
+    <div class="errors">
+        <ul>
+            <?php foreach ($errors as $error): ?>
+            <li><?= $error ?></li>
+            <?php endforeach; ?>
+        </ul>
+    </div>
+<?php } ?>
+
 
 <?php include('footer.php'); ?>

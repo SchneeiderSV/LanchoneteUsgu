@@ -9,7 +9,7 @@
 
     if(isset($_GET['delete'])){
         require_once('utils/Database.php');
-        Database::delete('ingredient', ['id' => $_GET['delete']]);
+        Database::delete('ingredients', ['id' => $_GET['delete']]);
 }
 
     if(isset($_POST['name'])){
@@ -35,7 +35,7 @@
                 "quantity" => $qty,
             ];
 
-            $ingredientId = Database::insert('ingredient', $data);
+            $ingredientId = Database::insert('ingredients', $data);
 
             if($ingredientId){
                 echo "<script>alert('O ingrediente foi adicionado com sucesso!')</script>";
@@ -43,26 +43,20 @@
         }
     }
 
-    $ingredients = Database::selectAll("ingredient");
+    $ingredients = Database::selectAll("ingredients");
 
 ?>
 
 
 
 <form method="POST">
-    <div class="ingredientscontainer">
-        <h1 class="betterh1">Ingredientes</h1>
-        <div class="ingredientsitems">
-            <div class="ingredientitem">
-                <input type="text" name="name" placeholder="Nome">
-            </div>
-            <div class="ingredientitem">
-                <input type="number" name="qty" placeholder="Quantidade">
-            </div>
-            <div class="ingredientsitem">
-                <button>Enviar</button>
-            </div>
+        <h1>Ingredientes</h1>
+        <div>
+            <input type="text" name="name" placeholder="Nome" required>
+            <input type="number" name="qty" placeholder="Quantidade" required>
+            <button>Enviar</button>
         </div>
+
         <div class="ingredientslist">
             <?php if($ingredients) {
                 foreach($ingredients as $ingredient) { ?>
@@ -77,6 +71,15 @@
     </div>   
 </form>
 
+<?php if (!empty($errors)){ ?>
+    <div class="errors">
+        <ul>
+            <?php foreach ($errors as $error): ?>
+            <li><?= $error ?></li>
+            <?php endforeach; ?>
+        </ul>
+    </div>
+<?php } ?>
 
 
 <?php include('footer.php'); ?>

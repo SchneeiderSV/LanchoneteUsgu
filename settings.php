@@ -4,14 +4,14 @@
     Auth::checkAdmin();
 ?>
 
-<div class="settingscontainer">
+<div>
 
-    <a class="settingsitem" href="dishes.php">
-        <span class="settingstext">Add Dishes</span>
+    <a href="dishes.php">
+        <span>Add Dishes</span>
     </a>
 
-    <a class="settingsitem" href="ingredients.php">
-        <span class="settingstext">Add Ingredients</span>
+    <a href="ingredients.php">
+        <span>Add Ingredients</span>
     </a>
 
 </div>

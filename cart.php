@@ -23,7 +23,7 @@
 <div class="list">
 
     <?php if(isset($_SESSION['cart'])) foreach($_SESSION['cart'] as $index => $item){
-        $dish = Database::select('dish', ['id', 'name', 'price', 'description', 'img'], ["id" => $item['id']])[0];
+        $dish = Database::select('dishes', ['id', 'name', 'price', 'description', 'img'], ["id" => $item['id']])[0];
     ?>
 
     <div class="item">
@@ -35,7 +35,7 @@
 
         <div class="ingredients">
             <?php foreach($item['ingredients'] as $k => $v) {
-                $currentIngredient = Database::select('ingredient', ['id', 'name'], ['id' => $k])[0];
+                $currentIngredient = Database::select('ingredients', ['id', 'name'], ['id' => $k])[0];
                 ?>
                 
                 <h2><?= $currentIngredient['name'] ?></h2>
