@@ -26,12 +26,7 @@ if(isset($_GET['id'])){
         }
     }
 
-    $dishIngredients = Database::select('dishes_ingredients', ['ingredient_id'], ["dish_id" => $selectedId]);
-
-    $ingredients = [];
-    foreach ($dishIngredients as $ingredient) {
-        $ingredients[$ingredient["ingredient_id"]] = Database::select('ingredients', ['id', 'name', 'quantity'], ["id" => $ingredient["ingredient_id"]])[0];
-    }
+    $dishIngredients = Database::join('dishes_ingredients', 'ingredient_id', 'ingredients', 'id', ['*'], ["dish_id" => $selectedId]);
     ?>
     
 
@@ -51,7 +46,7 @@ if(isset($_GET['id'])){
         <div class="ingredientsList">
         <h2>Ingredientes:</h2>
 
-        <?php if($ingredients){ foreach($ingredients as $ingredient){ ?>
+        <?php if($dishIngredients){ foreach($dishIngredients as $ingredient){ ?>
             <div class="inputGroup ingredientCheckbox">
                 <input type="checkbox" checked name="ingredients[<?= $ingredient['id'] ?>]" id="<?= $ingredient['name'] ?>">
                 <label for="<?= $ingredient['name'] ?>"><?= $ingredient['name'] ?></label>

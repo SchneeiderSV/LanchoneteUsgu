@@ -8,7 +8,6 @@ class Auth {
         $_SESSION['admin'] = $user['is_adm'];
         $_SESSION['name'] = $user['name'];
         $_SESSION['email'] = $user['email'];
-        $_SESSION['address'] = $user['address'];
         $_SESSION['cpf'] = $user['cpf'];
     }
 

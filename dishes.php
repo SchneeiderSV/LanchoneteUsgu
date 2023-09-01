@@ -52,8 +52,6 @@
             $errors['size'] = 'O tamanho é obrigatório';
         }
 
-        if(!$isDrink) $isDrink = false;
-
         if(empty($errors)){
             $filename = $_FILES['img']['name'];
             $info_name = explode(".",$filename);
@@ -78,6 +76,8 @@
             }
 
             foreach ($ingredients as $ingredientID => $quantity) {
+                if(intval($quantity) <= 0) continue;
+                
                 $currentData = [
                     "dish_id" => $dishId,
                     "ingredient_id" => $ingredientID,
