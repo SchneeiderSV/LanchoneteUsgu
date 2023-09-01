@@ -103,6 +103,20 @@ class Database {
         return $stmt->fetchAll();
     }
 
+    public static function rawPreparedQuery($query, $values) {
+        $conn = self::getConnection();
+
+        $stmt = $conn->prepare($query);
+
+        foreach ($values as $param => $paramValue) {
+            $stmt->bindValue($param, $paramValue);
+        }
+
+        $stmt->execute();
+
+        return $stmt->fetchAll();
+    }
+
     public static function join($mainTable, $mainColumn, $joinTable, $joinColumn, $selectColumns, $conditions = []) {
         $conn = self::getConnection();
 

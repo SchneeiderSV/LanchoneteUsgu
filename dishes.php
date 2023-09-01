@@ -24,6 +24,11 @@
         $price = $_POST['price'];
         $ingredients = $_POST['ingredients'];
         $img = $_FILES['img'];
+        $size = $_POST['size'];
+        $isDrink = false;
+
+        if(isset($_POST['isDrink'])) $isDrink = true;
+
 
         $errors = [];
     
@@ -43,6 +48,12 @@
             $errors['img'] = 'A imagem é obrigatória';
         }
 
+        if(!validate($size, 'string')){
+            $errors['size'] = 'O tamanho é obrigatório';
+        }
+
+        if(!$isDrink) $isDrink = false;
+
         if(empty($errors)){
             $filename = $_FILES['img']['name'];
             $info_name = explode(".",$filename);
@@ -57,6 +68,8 @@
                 "price" => $price,
                 "description" => $desc,
                 "img" => $newName,
+                "is_drink" => $isDrink,
+                "size" => $size,
             ];
 
             $dishId = Database::insert('dishes', $data);
@@ -83,37 +96,35 @@
 
 ?>
 
-<form method="POST" enctype="multipart/form-data">
-    <div class="ingredientscontainer">
-        <h1 class="betterh1">Dishes</h1>
-        <div class="dishesitems">
-            <div class="box">
-                <div class="ingredientitem">
-                    <input type="text" name="name" placeholder="Nome">
-                </div>
-                <div class="ingredientitem">
-                    <input type="text" name="price" placeholder="Preço">
-                </div>
-                <div class="ingredientsitemexception">
-                    <label for="img">Imagem do prato</label>
-                    <input type="file" name="img" id="img">
-                </div>
-            </div>  
-            <div class="ingredientsitem">
-                <textarea name="desc" id="" cols="20" rows="10"></textarea>
-            </div>
+<form class="center form" method="POST" enctype="multipart/form-data">
+        <h1>Dishes</h1>
+        
+        <input class="input" type="text" name="name" placeholder="Nome" required>
+        <input class="input" type="text" name="price" placeholder="Preço" required>
+
+        <div class="imageUpload">
+            <label for="img">Imagem do prato</label>
+            <input type="file" name="img" id="img" required>
         </div>
 
+        <div class="inputGroup">
+            <label class="lbl" for="isDrink">É bebida?</label>
+            <input type="checkbox" name="isDrink" id="isDrink" value="1">
+        </div>
+
+        <input class="input" type="text" name="size" id="size" placeholder="Tamanho" required>
+
+        <textarea class="textarea" name="desc" id="" cols="20" rows="10" required></textarea>
 
         <div class="existingingredients">
             <?php if($ingredients){ foreach ($ingredients as $ingredient) { ?>  
-                <div class="existingitem">
-                    <label for="<?= $ingredient['id']?>"><?= $ingredient['name']?></label>
-                    <input type="number" name="ingredients[<?= $ingredient['id']?>]" id="<?= $ingredient['id']?>" placeholder="Quantidade">
+                <div>
+                    <label class="lbl" for="<?= $ingredient['id']?>"><?= $ingredient['name']?></label>
+                    <input class="quantityInput" type="number" name="ingredients[<?= $ingredient['id']?>]" id="<?= $ingredient['id']?>">
                 </div>
             <?php } } ?>
 
-            <button>Enviar</button>
+            <button class="btn">Enviar</button>
         </div>
         
 

@@ -13,7 +13,7 @@
         <div class="dishBox" onclick="window.location.href=`dish.php?id=<?= $dish['id'] ?>`">
             <img class="img" src="images/<?= $dish['img'] ?>">
             <h3><?= $dish['name'] ?></h3>
-            <p>R$<?= $dish['price']?>,00</p>
+            <p>R$<?= $dish['price']?></p>
 
             <button>Ver mais</button>
             <button>Adicionar ao carrinho</button>

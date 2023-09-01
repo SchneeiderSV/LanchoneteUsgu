@@ -10,11 +10,12 @@
     if(!isset($_GET['id'])) die("ID nao foi informado");
 
     $selectedId = intval($_GET['id']);
-    $dish = Database::rawQuery("SELECT dishes.id, dishes.name, dishes.description, dishes.price, dishes.img, GROUP_CONCAT(ingredients.id) AS ingredients
+    $dish = Database::rawPreparedQuery("SELECT dishes.id, dishes.name, dishes.description, dishes.price, dishes.img, GROUP_CONCAT(ingredients.id) AS ingredients
     FROM dishes
     LEFT JOIN dishes_ingredients ON dishes.id = dishes_ingredients.dish_id
     LEFT JOIN ingredients ON dishes_ingredients.ingredient_id = ingredients.id
-    GROUP BY dishes.id")[0];
+    WHERE dishes.id = :id
+    GROUP BY dishes.id ", [":id" => $selectedId])[0];
 
     if(isset($_POST['name'])){
         $name = $_POST['name'];

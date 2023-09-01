@@ -186,3 +186,38 @@ html, body {
 .inputBtn {
     width: 30%;
 }
+
+.cartItem {
+    flex-direction: row;
+    margin: 1rem 2rem;
+    padding: 1rem;
+}
+
+.cartItem h1 {
+    font-size: 1.2rem;
+}
+
+.cartItem .ingredients h2 {
+    font-size: 1rem;
+}
+
+.cartItem h2 {
+    font-size: 1.2rem;
+}
+
+.link {
+    text-decoration: none;
+    color: black;
+    background-color: lightgray;
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+}
+
+.imgCart {
+    width: 6rem;
+    height: 6rem;
+}
+
+.form {
+    margin-bottom: 5rem;
+}

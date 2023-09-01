@@ -19,6 +19,7 @@ class Cart {
         } else {
             $_SESSION['cart'][] = $cartItem;
         }
+
     }
 
     public static function remove($position) {

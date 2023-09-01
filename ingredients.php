@@ -49,13 +49,17 @@
 
 
 
-<form method="POST">
-        <h1>Ingredientes</h1>
-        <div>
-            <input type="text" name="name" placeholder="Nome" required>
-            <input type="number" name="qty" placeholder="Quantidade" required>
-            <button>Enviar</button>
+<form class="center" method="POST">
+        <h1>Cadastrar ingredientes</h1>
+        
+        <input class="input" type="text" name="name" placeholder="Nome" required>
+
+        <div class="inputGroup">
+            <label class="lbl" for="qty">Quantidade</label>
+            <input class="quantityInput" type="number" name="qty"id="qty" required>
         </div>
+        
+        <button class="inputBtn">Enviar</button>
 
         <div class="ingredientslist">
             <?php if($ingredients) {

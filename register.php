@@ -70,6 +70,8 @@ if(isset($_POST['name'])){
     <input class="input" type="password" name="password" placeholder="Senha" required>
 
     <button class="inputBtn">Criar conta</button>
+
+    <p>Já possui uma conta? Entre clicando <a href="login.php">aqui</a></p>
 </form>
 
 <?php if (!empty($errors)){ ?>

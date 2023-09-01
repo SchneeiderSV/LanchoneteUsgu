@@ -29,7 +29,7 @@
             <?php     
             } else{ ?>
                 <div class='footerItem'>
-                    <a href='login.php'><img src='assets/user.png' width='35'></a>
+                    <a href='login.php'><i class='bx bxs-user'></i></a>
                 </div> <?php
             }
         ?>
