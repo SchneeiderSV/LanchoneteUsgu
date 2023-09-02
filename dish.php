@@ -14,12 +14,15 @@ if(isset($_GET['id'])){
 
     if (isset($_POST['cart'])) {
         $quantity = intval($_POST['quantity']);
+
+        $ingredients = array_keys($_POST['ingredients']);
+
         if ($quantity > 0) {
 
             $cartItem = [
                 'id' => $dish[0]['id'],
                 'quantity' => $quantity,
-                'ingredients' => $_POST['ingredients'],
+                'ingredients' => $ingredients,
             ];
 
             Cart::store($cartItem);

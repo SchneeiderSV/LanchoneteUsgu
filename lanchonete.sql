@@ -75,7 +75,10 @@ CREATE TABLE `orders` (
   `id` int(11) NOT NULL,
   `total_price` float NOT NULL,
   `change_value` float NOT NULL,
-  `address` varchar(255) NOT NULL,
+  `district` varchar(255) NOT NULL,
+  `street` varchar(255) NOT NULL,
+  `number` varchar(255) NOT NULL,
+  `complement` varchar(255) NOT NULL,
   `payment_method` int(11) NOT NULL,
   `payment_confirmation` int(11) NOT NULL,
   `status` int(11) NOT NULL,
@@ -93,7 +96,7 @@ CREATE TABLE `orders_dishes` (
   `id` int(11) NOT NULL,
   `order_id` int(11) NOT NULL,
   `dish_id` int(11) NOT NULL,
-  `quantity` int(11) NOT NULL
+  `amount` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
