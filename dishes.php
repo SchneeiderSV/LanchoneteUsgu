@@ -1,13 +1,12 @@
 <?php
     include('header.php');
     require_once('utils/Auth.php');
+    require_once('utils/Database.php');
     Auth::checkAdmin();
 ?>
 
 <?php
-    require_once('utils/Database.php');
     if(isset($_GET['delete'])){
-        require_once('utils/Database.php');
         
         Database::delete('dishes_ingredients', ['dish_id' => $_GET['delete']]);
         $filename = Database::select('dishes', ['img'], ['id' => $_GET['delete']])[0]['img']; 
@@ -53,11 +52,11 @@
         }
 
         if(empty($errors)){
-            $filename = $_FILES['img']['name'];
+            $filename = $img['name'];
             $info_name = explode(".",$filename);
             $ext = end($info_name);
             $newName = uniqid().".".$ext;
-            if(!move_uploaded_file($_FILES["img"]["tmp_name"],"images/".$newName)){
+            if(!move_uploaded_file($img["tmp_name"],"images/".$newName)){
                 echo "Upload não foi realizado";
             }
 

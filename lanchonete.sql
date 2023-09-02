@@ -80,7 +80,7 @@ CREATE TABLE `orders` (
   `number` varchar(255) NOT NULL,
   `complement` varchar(255) NOT NULL,
   `payment_method` int(11) NOT NULL,
-  `payment_confirmation` int(11) NOT NULL,
+  `payment_confirmation` varchar(255) NOT NULL,
   `status` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
   `created_at` datetime DEFAULT current_timestamp()

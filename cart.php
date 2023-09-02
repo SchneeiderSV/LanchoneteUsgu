@@ -13,12 +13,8 @@
         Auth::redirect('cart.php');
     }
 
-    if (!isset($_SESSION['cart'])) {
-       echo "Nenhum item adicionado ao carrinho!";
-    }
-
     $total = 0;
-
+    $dishes = [];
 ?>
 
 <h1>Carrinho de compras</h1>
@@ -79,12 +75,41 @@
             $errors['complement'] = 'O complemento é obrigatório';
         }
 
-        if(empty($errors)){
-            if($paymentMethod == 1){
-                // Dinheiro
+        $orderData = [];
 
-            } else {
-                // Pix
+        if($paymentMethod == 1){
+            // Dinheiro
+            $changeValue = $_POST['changeValue'];
+            if(!validate($changeValue, 'float')){
+                $errors["change"] = "O valor do troco é inválido";
+            }
+
+            $orderData = [
+                "total_price" => $total,
+                "change_value" => $changeValue,
+                "district" => $district,
+                "street" => $street,
+                "number" => $number,
+                "complement" => $complement,
+                "payment_method" => $paymentMethod,
+                "payment_confirmation" => 0,
+                "status" => 0,
+                "user_id" => $_SESSION['id'],
+            ];
+        } else {
+            // Pix
+            $confirmation = $_FILES['confirmation'];
+            if(!validate($confirmation, 'img')){
+                $errors["confirmation"] = "O comprovante de pagamento enviado não é válido";
+            }
+
+            $filename = $_FILES['confirmation']['name'];
+            $info_name = explode(".",$filename);
+            $ext = end($info_name);
+            $newName = uniqid().".".$ext;
+
+            if(!move_uploaded_file($_FILES["confirmation"]["tmp_name"],"comprovantes/".$newName)){
+                $errors["confirmation"] = "Ocorreu um erro no envio do comprovante";
             }
 
             $orderData = [
@@ -95,11 +120,13 @@
                 "number" => $number,
                 "complement" => $complement,
                 "payment_method" => $paymentMethod,
-                "payment_confirmation" => 0,
+                "payment_confirmation" => $newName,
                 "status" => 0,
                 "user_id" => $_SESSION['id'],
             ];
-            
+        }
+
+        if(empty($errors)){
             $orderId = Database::insert('orders', $orderData);
 
             foreach($_SESSION['cart'] as $item){
@@ -122,6 +149,8 @@
                 }
 
                 $orderDishId = Database::insert('orders_dishes', $data);
+                unset($_SESSION['cart']);
+                Auth::redirect('history.php');
             }
 
         }
@@ -129,9 +158,10 @@
     
     ?>
 
+    <?php if(!Cart::isEmpty()){ ?>
     <p>Total: R$<?= $total ?></p>
-    
-    <form class="center" method="POST" enc="multipart/form-data">
+
+    <form class="center" method="POST" enctype="multipart/form-data">
         <input class="input" type="text" name="district" placeholder="Bairro" required>
         <input class="input" type="text" name="street" placeholder="Rua" required>
         <input class="input" type="text" name="num" placeholder="Numero" required>
@@ -160,6 +190,7 @@
         <input class="btn" type="submit" name="finishOrder" value="Fazer pedido"></input>
 
     </form>
+    <?php } else echo "Nenhum item foi adicionado ao carrinho"; ?>
 
     <?php if (!empty($errors)){ ?>
     <div class="errors">

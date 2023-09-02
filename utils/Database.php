@@ -20,7 +20,7 @@ class Database {
         return $stmt->fetchAll();
     }
 
-    public static function select($table, $columns, $conditions = []) {
+    public static function select($table, $columns, $conditions = [], $orderBy = "") {
         $conn = self::getConnection();
         
         $query = "SELECT " . implode(', ', $columns) . " FROM $table";
@@ -32,6 +32,8 @@ class Database {
             }
             $query .= " WHERE " . implode(' AND ', $where);
         }
+
+        if($orderBy) $query.=" ORDER BY $orderBy";
 
         $stmt = $conn->prepare($query);
         $stmt->execute(array_values($conditions));

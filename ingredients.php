@@ -1,16 +1,19 @@
 <?php
     include('header.php');
+    require_once('utils/Database.php');
     require_once('utils/Auth.php');
     Auth::checkAdmin();
 ?>
 
 <?php
-    require_once('utils/Database.php');
 
     if(isset($_GET['delete'])){
-        require_once('utils/Database.php');
-        Database::delete('ingredients', ['id' => $_GET['delete']]);
-}
+        $dishesUsingIngredient = Database::select('dishes_ingredients', ['*'], ['ingredient_id' => $_GET['delete']]);
+        if(!$dishesUsingIngredient) Database::delete('ingredients', ['id' => $_GET['delete']]);
+        else {
+            echo "Existem pratos que usam esse ingrediente";
+        }
+    }
 
     if(isset($_POST['name'])){
         require_once('utils/functions.php');

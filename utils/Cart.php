@@ -28,6 +28,10 @@ class Cart {
             $_SESSION['cart'] = array_values($_SESSION['cart']);
         }
     }
+
+    public static function isEmpty() {
+        return empty($_SESSION['cart']);
+    }
     
 }
 

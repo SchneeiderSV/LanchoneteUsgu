@@ -1,14 +1,31 @@
 <?php
     include("header.php");
     require_once('utils/Auth.php');
+    require_once('utils/Database.php');
+    require_once('utils/functions.php');
     Auth::checkAdmin();
+
+    $queryMonth = "SELECT SUM(orders.total_price) as total_sum FROM orders WHERE MONTH(created_at) = " . date('m') . " AND YEAR(created_at) = " . date('Y');
+    $totalMonth = Database::rawQuery($queryMonth)[0]['total_sum'];
+
+    $queryAll = "SELECT SUM(orders.total_price) as total_sum FROM orders";
+    $totalAll = Database::rawQuery($queryAll)[0]['total_sum'];
 ?>
 
 <div class="center">
 
-    <div class="center sales">
+    <div class="center sales" style="text-align: center;">
         <h1>Resumo de vendas</h1>
-        <p style="text-align: center;">Lorem ipsum dolor sit amet consectetur adipisicing elit. Odio, corporis, consequatur eligendi doloribus atque nam voluptates inventore quas odit cumque dicta. Cumque repellat accusamus similique? Atque, explicabo veniam cupiditate dolores tempora impedit quo, velit cumque eum totam iusto, rem inventore asperiores quidem maxime ea suscipit nisi eos. Vitae, placeat possimus? Quisquam, blanditiis culpa fugit fugiat et dignissimos soluta earum dicta sequi, cum esse saepe, aut nostrum eveniet! Laudantium optio harum doloremque odit accusamus architecto blanditiis laborum similique doloribus consectetur tempore neque, voluptate recusandae a nesciunt autem quasi deleniti. Voluptatibus ab magnam saepe odit, rerum voluptatum. Facere delectus architecto ut autem rerum porro iste, quis libero accusamus laborum inventore sunt quae modi totam ea, earum explicabo, cum ipsum quos doloribus tempora aperiam aut. Cum nostrum quia molestias, tempore obcaecati laborum nihil rem similique ut non veniam quaerat a laboriosam quasi. Dolorem, incidunt! Dolorum nemo assumenda voluptas? Doloribus provident animi a vitae illum aspernatur nam quisquam unde reiciendis, dolorum voluptatum iusto facere tenetur iure sed rerum sit quam ea, illo saepe? Impedit, eum ratione minima neque at iure asperiores accusantium numquam minus atque perferendis totam a maxime quasi nobis repellendus? Distinctio consectetur repudiandae facilis tenetur laborum enim voluptatem minima adipisci est molestias!</p>
+
+        <div class="box">
+            <h1>Este mês</h1>
+            <p>Faturamento até agora: R$<?= $totalMonth ?> </p>
+        </div>
+
+        <div class="box">
+            <h1>Total</h1>
+            <p>Faturamento registrado: R$<?= $totalAll ?></p>
+        </div>
     </div>
 
     <a class="link" href="dishes.php">Gerenciar itens do menu</a>

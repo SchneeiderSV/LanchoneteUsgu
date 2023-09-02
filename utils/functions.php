@@ -1,5 +1,7 @@
 <?php
 
+$orderStatus = ["Processando", "Em andamento", "A caminho", "Entregue", "Cancelada/Erro"];
+
 function validate($data, $type) {
     switch ($type) {
         case 'string':
@@ -13,6 +15,16 @@ function validate($data, $type) {
         case 'img':
             if (isset($data['tmp_name']) && is_uploaded_file($data['tmp_name'])) {
                 $allowedExtensions = ['jpg', 'jpeg', 'png', 'gif'];
+                $fileExtension = strtolower(pathinfo($data['name'], PATHINFO_EXTENSION));
+                $isValidExtension = in_array($fileExtension, $allowedExtensions);
+                $isValidSize = $data['size'] <= 5 * 1024 * 1024; // 5MB
+
+                return $isValidExtension && $isValidSize;
+            }
+            return false;
+        case 'paymentConfirmation':
+            if (isset($data['tmp_name']) && is_uploaded_file($data['tmp_name'])) {
+                $allowedExtensions = ['jpg', 'jpeg', 'png', 'pdf'];
                 $fileExtension = strtolower(pathinfo($data['name'], PATHINFO_EXTENSION));
                 $isValidExtension = in_array($fileExtension, $allowedExtensions);
                 $isValidSize = $data['size'] <= 5 * 1024 * 1024; // 5MB
