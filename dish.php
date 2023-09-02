@@ -29,7 +29,7 @@ if(isset($_GET['id'])){
         }
     }
 
-    $dishIngredients = Database::join('dishes_ingredients', 'ingredient_id', 'ingredients', 'id', ['*'], ["dish_id" => $selectedId]);
+        $dishIngredients = Database::join('dishes_ingredients', 'ingredient_id', 'ingredients', 'id', ['*'], ["dish_id" => $selectedId]);
     ?>
     
 
@@ -47,9 +47,12 @@ if(isset($_GET['id'])){
             <input class="quantityInput" type="number" value="1" min="1" name="quantity" id="quantity">
         </div>
         <div class="ingredientsList">
-        <h2>Ingredientes:</h2>
-
-        <?php if($dishIngredients){ foreach($dishIngredients as $ingredient){ ?>
+        
+        <?php
+         if($dishIngredients && count($dishIngredients)>1){
+            ?>
+            <h2>Ingredientes:</h2>
+            <?php foreach($dishIngredients as $ingredient){ ?>
             <div class="inputGroup ingredientCheckbox">
                 <input type="checkbox" checked name="ingredients[<?= $ingredient['id'] ?>]" id="<?= $ingredient['name'] ?>">
                 <label for="<?= $ingredient['name'] ?>"><?= $ingredient['name'] ?></label>

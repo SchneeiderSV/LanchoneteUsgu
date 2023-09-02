@@ -47,7 +47,7 @@
         <p>Status do pedido: <?= $orderStatus[$order['status']] ?></p>
         <p>Pedido feito por: <?= $user['name'] . " - " . $user['email']?> - <?php echo (new DateTimeImmutable($order['created_at']))->format('d-m-Y H:i:s'); ?></p>
 
-        <?php // if($order['status'] != 3 && $order['status'] != 4) { ?>
+        <?php if($order['status'] != 3 && $order['status'] != 4) { ?>
         <form method="POST">
             <input type="hidden" name="orderId" value="<?= $order['id'] ?>">
             <label for="status">Atualizar status do pedido</label>
@@ -58,7 +58,7 @@
             </select>
             <button>Salvar</button>
         </form>
-        <?php // } ?>
+        <?php } ?>
     </div>
     
 <?php } }?>

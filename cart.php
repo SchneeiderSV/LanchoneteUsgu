@@ -141,7 +141,11 @@
                 foreach($item['ingredients'] as $ingredientId){
                    $ingredient = Database::join('dishes_ingredients', 'ingredient_id', 'ingredients', 'id', ['*'], [ 'ingredient_id' => $ingredientId])[0];
 
-                   if($ingredient['quantity']<$item['quantity']*$dish['quantity']) return;
+                   if($ingredient['quantity']<$item['quantity']*$dish['quantity']){
+                    echo "Os ingredientes necessários para esse prato estão faltando";
+                    include('footer.php');
+                    die();
+                   }
 
                    $newAmount = $ingredient['quantity']-($item['quantity']*$dish['quantity']);
 
