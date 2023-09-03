@@ -60,20 +60,23 @@ if(isset($_POST['name'])){
     }
 }
 ?>
+<section class="logContainer">
+    <h1 class="logo">D'MANOS MERENDEROS</h1>
+    <div class="card">
+        <form class="center" style="gap: 1rem;" method="POST">
+            <h1>Registrar-se</h1>
 
-<form class="center" method="POST">
-    <h1>Registrar-se</h1>
+            <input class="input" type="text" name="cpf" placeholder="CPF" required>
+            <input class="input" type="text" name="name" placeholder="Nome" required>
+            <input class="input" type="email" name="email" placeholder="Email" required>
+            <input class="input" type="password" name="password" placeholder="Senha" required>
 
-    <input class="input" type="text" name="cpf" placeholder="CPF" required>
-    <input class="input" type="text" name="name" placeholder="Nome" required>
-    <input class="input" type="email" name="email" placeholder="Email" required>
-    <input class="input" type="password" name="password" placeholder="Senha" required>
+            <button class="inputBtn">Criar conta</button>
 
-    <button class="inputBtn">Criar conta</button>
-
-    <p>Já possui uma conta? Entre clicando <a href="login.php">aqui</a></p>
-</form>
-
+            <p class="p">Já possui uma conta? Entre clicando <a href="login.php">aqui</a></p>
+        </form>
+    </div>
+</section>
 <?php if (!empty($errors)){ ?>
     <div class="errors">
         <ul>

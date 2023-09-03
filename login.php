@@ -34,17 +34,21 @@
 
 ?>
 
+<section class="logContainer">
+    <h1 class="logo">D'MANOS MERENDEROS</h1>
+    <div class="card">
+        <form class="center" method="POST">
+            <h1>Entrar</h1>
 
-<form class="center" method="POST">
-    <h1>Entrar</h1>
+            <input class="input" type="email" name="email" placeholder="Email" required>
+            <input class="input" type="password" name="password" placeholder="Senha" required>
 
-    <input class="input" type="email" name="email" placeholder="Email">
-    <input class="input" type="password" name="password" placeholder="Senha">
+            <button class="inputBtn">Entrar</button>
 
-    <button class="inputBtn">Entrar</button>
-
-    <p>Ainda não possui uma conta? Clique <a href="register.php">aqui</a></p>
-</form>
+            <p class="p">Ainda não possui uma conta? Clique <a href="register.php">aqui</a></p>
+        </form>
+    </div>
+</section>
 
 <?php if (!empty($errors)){ ?>
     <div class="errors">
