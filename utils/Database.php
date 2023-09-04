@@ -24,7 +24,6 @@ class Database {
         $conn = self::getConnection();
         
         $query = "SELECT " . implode(', ', $columns) . " FROM $table";
-
         if (!empty($conditions)) {
             $where = [];
             foreach ($conditions as $column => $value) {

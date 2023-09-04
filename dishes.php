@@ -95,52 +95,67 @@
 
 ?>
 
-<form class="center form" method="POST" enctype="multipart/form-data">
-        <h1>Dishes</h1>
-        
-        <input class="input" type="text" name="name" placeholder="Nome" required>
-        <input class="input" type="text" name="price" placeholder="Preço" required>
+<section class="dishes">
+    <h1 class="logo" style="background-color: lightgray;">Dishes</h1>
+    <form class="center form" method="POST" enctype="multipart/form-data">
+            
+            
+            <input class="input" type="text" name="name" placeholder="Nome" required>
+            <input class="input" type="text" name="price" placeholder="Preço" required>
 
-        <div class="imageUpload">
-            <label for="img">Imagem do prato</label>
-            <input type="file" name="img" id="img" required>
+            <div class="imageUpload">
+                <label class="inputBtn imgLbl" for="img">Escolher imagem do prato</label>
+                <input type="file" name="img" id="img" style="display: none;" multiple=false required>
+                <span class="imgName"></span>
+            </div>
+
+            <div class="inputGroup">
+                <label class="lbl" for="isDrink">É bebida?</label>
+                <input type="checkbox" name="isDrink" id="isDrink" value="1">
+            </div>
+
+            <input class="input" type="text" name="size" id="size" placeholder="Tamanho" required>
+
+            <textarea class="textarea" placeholder="Descrição" name="desc" id="" cols="35" rows="5" required></textarea>
+
+            <div class="existingingredients">
+                <?php if($ingredients){ foreach ($ingredients as $ingredient) { ?>  
+                    <div>
+                        <label class="lbl" for="<?= $ingredient['id']?>"><?= $ingredient['name']?></label>
+                        <input class="quantityInput" type="number" name="ingredients[<?= $ingredient['id']?>]" id="<?= $ingredient['id']?>">
+                    </div>
+                <?php } } ?>
+
+                <button class="inputBtn">Enviar</button>
+            </div>
+            
+
+            
+            <div class="ingredientslist">
+                <?php if($dishes) {
+                    foreach($dishes as $dish) { ?>
+                    <div class="ingredient">
+                        <h2><?= $dish['name'] ?></h2>
+                        <p><?= $dish['description'] ?></p>
+                        <a href="editDish.php?id=<?= $dish['id'] ?>">Editar</a>
+                        <a href="dishes.php?delete=<?= $dish['id'] ?>">Excluir</a>
+                    </div>
+                <?php } } ?>
+            </div>
         </div>
+    </form>
+</section>
 
-        <div class="inputGroup">
-            <label class="lbl" for="isDrink">É bebida?</label>
-            <input type="checkbox" name="isDrink" id="isDrink" value="1">
-        </div>
+<script>
+    let imgInp=document.querySelector("#img")
+    let imgName=document.querySelector(".imgName")
 
-        <input class="input" type="text" name="size" id="size" placeholder="Tamanho" required>
-
-        <textarea class="textarea" name="desc" id="" cols="20" rows="10" required></textarea>
-
-        <div class="existingingredients">
-            <?php if($ingredients){ foreach ($ingredients as $ingredient) { ?>  
-                <div>
-                    <label class="lbl" for="<?= $ingredient['id']?>"><?= $ingredient['name']?></label>
-                    <input class="quantityInput" type="number" name="ingredients[<?= $ingredient['id']?>]" id="<?= $ingredient['id']?>">
-                </div>
-            <?php } } ?>
-
-            <button class="btn">Enviar</button>
-        </div>
-        
-
-        
-        <div class="ingredientslist">
-            <?php if($dishes) {
-                foreach($dishes as $dish) { ?>
-                <div class="ingredient">
-                    <h2><?= $dish['name'] ?></h2>
-                    <p><?= $dish['description'] ?></p>
-                    <a href="editDish.php?id=<?= $dish['id'] ?>">Editar</a>
-                    <a href="dishes.php?delete=<?= $dish['id'] ?>">Excluir</a>
-                </div>
-            <?php } } ?>
-        </div>
-    </div>
-</form>
+    imgInp.addEventListener("change", function() {
+        let path=imgInp.value
+        let img=path.split("\\")
+        imgName.innerHTML=img[img.length-1]
+    })
+</script>
 
 <?php if (!empty($errors)){ ?>
     <div class="errors">
@@ -151,5 +166,7 @@
         </ul>
     </div>
 <?php } ?>
+
+
 
 <?php include('footer.php'); ?>

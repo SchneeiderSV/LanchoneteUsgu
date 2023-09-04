@@ -66,6 +66,33 @@ html, body {
     height: 60vh;
 }
 
+.accContainer{
+    width: 75vw;
+    height: 60vh;
+}
+
+.accTitle{
+    font-size: 1.7rem;
+    background-color: lightgray;
+}
+
+.account{
+    border: 4px solid lightgray;
+    border-top: none;
+    padding: 0.8rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+}
+
+.accInfo{
+    font-size: 1.2rem;
+}
+.accInfo span{
+    background-color: lightgray;
+    padding: 5px;
+}
+
 .dishList {
     display: flex;
     justify-content: center;
@@ -268,5 +295,30 @@ html, body {
 }
 
 .form {
-    margin-bottom: 5rem;
+    padding: 10px;
+    border: 4px solid lightgray;
+}
+
+.textarea{
+    resize: none;
+    outline: none;
+    border: none;
+    box-shadow: inset 0 0 5px gray;
+    padding: 5px;
+}
+
+.dishes{
+    width: 90vw;
+}
+
+.imgLbl{
+    font-size: 0.8rem;
+}
+
+.imageUpload{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 0.2rem;
 }
