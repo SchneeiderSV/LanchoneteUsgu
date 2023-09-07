@@ -322,3 +322,7 @@ html, body {
     align-items: center;
     gap: 0.2rem;
 }
+.userBtn{
+    text-decoration: none;
+    color: black;
+}

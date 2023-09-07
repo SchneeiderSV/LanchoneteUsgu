@@ -15,8 +15,8 @@
         <h1 class="accInfo">E-mail: <span><?= $user['email'] ?></span></h1>
         <h1 class="accInfo">CPF: <span><?= $user['cpf'] ?></span></h1>
 
-        <button class="change">Trocar E-mail</button>
-        <button class="change">Trocar Senha</button>
+        <button class="change"><a class="userBtn" href="editEmail.php?id=<?= $user['id'] ?>">Trocar E-mail</a></button>
+        <button class="change"><a class="userBtn" href="editSenha.php?id=<?= $user['id'] ?>">Trocar Senha</a></button>
     </div>
 </section>
 
