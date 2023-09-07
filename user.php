@@ -12,8 +12,8 @@
         <h1 class="accInfo">E-mail: <span><?= $_SESSION['email'] ?></span></h1>
         <h1 class="accInfo">CPF: <span><?= $_SESSION['cpf'] ?></span></h1>
 
-        <button class="change"><a class="userBtn" href="editEmail.php?id=<?= $user['id'] ?>">Trocar E-mail</a></button>
-        <button class="change"><a class="userBtn" href="editSenha.php?id=<?= $user['id'] ?>">Trocar Senha</a></button>
+        <button class="change"><a class="userBtn" href="editEmail.php?id=<?= $_SESSION['id'] ?>">Trocar E-mail</a></button>
+        <button class="change"><a class="userBtn" href="editSenha.php?id=<?= $_SESSION['id'] ?>">Trocar Senha</a></button>
     </div>
 </section>
 

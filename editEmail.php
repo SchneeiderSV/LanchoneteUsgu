@@ -46,14 +46,16 @@
         }
     }
 ?>
-
-
-<form method="POST">
-    <label for="name">Email</label>
-    <input type="text" name="email" id="email" value="<?= $user['email']; ?>">
-
-    <button>Atualizar</button>
-</form>
+<section class="altContainer">
+    <h1 class="logo">- Alterar Email -</h1>
+    <div class="card">
+        <form  class="center" method="POST">
+            <label for="name">Email</label>
+            <input type="text" name="email" id="email" value="<?= $user['email']; ?>">
+            <button>Atualizar</button>
+        </form>
+    </div>
+</section>
 
 <?php if (!empty($errors)){ ?>
     <div class="errors">

@@ -41,15 +41,18 @@
 ?>
 
 
-<form method="POST">
-    <label for="name">Senha Antiga</label>
-    <input type="password" name="senhaAntiga" id="senhaAntiga">
-    <br><br>
-    <label for="name">Nova Senha</label>
-    <input type="password" name="novaSenha" id="novaSenha">
-    <br><br>
-    <button>Atualizar</button>
-</form>
+<section class="altContainer">
+    <h1 class="logo">- Alterar Senha -</h1>
+    <div class="card">
+        <form class ="center" method="POST">
+            <label for="name">Senha Antiga</label>
+            <input type="password" name="senhaAntiga" id="senhaAntiga">
+            <label for="name">Nova Senha</label>
+            <input type="password" name="novaSenha" id="novaSenha">
+            <button>Atualizar</button>
+        </form>
+    </div>
+</section>
 
 <?php if (!empty($errors)){ ?>
     <div class="errors">
