@@ -13,7 +13,7 @@
         <div class="dishBox" onclick="window.location.href=`dish.php?id=<?= $dish['id'] ?>`">
             <img class="img" src="images/<?= $dish['img'] ?>">
             <h3><?= $dish['name'] ?></h3>
-            <p>R$<?= $dish['price']?></p>
+            <p>R$<?= number_format((float)$dish['price'], 2, ',') ?></p>
 
             <button>Ver mais</button>
             <button>Adicionar ao carrinho</button>

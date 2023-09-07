@@ -29,11 +29,11 @@
             <?php foreach($orderDishes as $orderDish){
                 $dish = Database::select('dishes', ['*'], ['id' => $orderDish['dish_id']])[0];
                 ?>
-                <h2><?= $dish['name'] . " - " . $dish['size'] . " - " . $orderDish['amount'] ?>x</h2>
+                <h2><?= $dish['name'] . " - " . $dish['size'] . " - " . $orderDish['notes'] ?></h2>
             <?php } ?>
         </div>
 
-        <p>Valor total: <?= $order['total_price'] ?></p>
+        <p>Valor total: R$<?= number_format((float)$order['total_price'], 2, ',') ?></p>
 
         <p>Dados de entrega: <?= $order['district'] . ", ". $order['street'] . ", " . $order['number'] . ", " . $order['complement'] ?></p>
 
@@ -41,11 +41,13 @@
             <p>Metodo de pagamento: <?= $order['payment_method'] == 2 ? 'Pix' : 'Dinheiro' ?></p>
             <?php if($order['payment_method'] == 2){ ?>
                 <a target="__blank" href="comprovantes/<?= $order['payment_confirmation'] ?>">Ver comprovante de pagamento</a>
-            <?php } ?>
+            <?php } else { ?>
+                <p>Valor que será entregue: R$<?= number_format((float)$order['change_value'], 2, ',') ?></p>
+            <?php } ?> 
 
         </div>
         <p>Status do pedido: <?= $orderStatus[$order['status']] ?></p>
-        <p>Pedido feito por: <?= $user['name'] . " - " . $user['email']?> - <?php echo (new DateTimeImmutable($order['created_at']))->format('d-m-Y H:i:s'); ?></p>
+        <p>Pedido feito por: <a href="users.php?id=<?= $user['id']?>"><?= $user['name']?></a> - <?php $user['email']?> - <?php echo (new DateTimeImmutable($order['created_at']))->format('d-m-Y H:i:s'); ?></p>
 
         <?php if($order['status'] != 3 && $order['status'] != 4) { ?>
         <form method="POST">
