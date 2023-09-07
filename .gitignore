@@ -1,5 +1,3 @@
-images/*
 comprovantes/*
 
-!images/.gitkeep 
 !comprovantes/.gitkeep 

@@ -19,12 +19,12 @@
 
         <div class="box">
             <h1>Este mês</h1>
-            <p>Faturamento até agora: R$<?= $totalMonth ?> </p>
+            <p>Faturamento até agora: R$<?= number_format((float)$totalMonth, 2, ',') ?> </p>
         </div>
 
         <div class="box">
             <h1>Total</h1>
-            <p>Faturamento registrado: R$<?= $totalAll ?></p>
+            <p>Faturamento registrado: R$<?= number_format((float)$totalAll, 2, ',') ?></p>
         </div>
     </div>
 

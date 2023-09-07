@@ -22,14 +22,14 @@
 <div class="center">
 
     <?php if(isset($_SESSION['cart'])) foreach($_SESSION['cart'] as $index => $item){
-        $dish = Database::select('dishes', ['id', 'name', 'price', 'description', 'img'], ["id" => $item['id']])[0];
-        $currentItemPrice = $item['quantity']*intval($dish['price']);
+        $dish = Database::select('dishes', ['id', 'name', 'price', 'description', 'img', 'size'], ["id" => $item['id']])[0];
+        $currentItemPrice = $item['quantity']*floatval($dish['price']);
         $total += $currentItemPrice;
     ?>
 
     <div class="cartItem center">
         <img class="imgCart" src="images/<?= $dish['img'] ?>" alt="">
-        <h1><?= $dish['name']; ?></h1>
+        <h1><?= $dish['name'] . " - " . $dish['size'] ?></h1>
         <div class="ingredients">
             <?php foreach($item['ingredients'] as $k) {
                 $currentIngredient = Database::select('ingredients', ['id', 'name'], ['id' => $k])[0];
@@ -40,7 +40,7 @@
         </div>
         <h3><?= $item['quantity']; ?></h3>
 
-        <h2>R$<?= $currentItemPrice ?></h2>
+        <h2>R$<?= number_format((float)$currentItemPrice, 2, ',') ?></h2>
 
 
         <a class="link" href="cart.php?delete=<?= $index ?>">Remover</a>
@@ -67,7 +67,7 @@
             $errors['street'] = 'O nome da rua é obrigatório';
         }
 
-        if(!validate($number, 'string')){
+        if(!validate($number, 'int')){
             $errors['number'] = 'O número do local é obrigatório';
         }
 
@@ -82,6 +82,10 @@
             $changeValue = $_POST['changeValue'];
             if(!validate($changeValue, 'float')){
                 $errors["change"] = "O valor do troco é inválido";
+            }
+
+            if($changeValue < $total){
+                $errors["change"] = "O valor que será pago não pode ser menor que o preço do pedido";
             }
 
             $orderData = [
@@ -130,12 +134,8 @@
             $orderId = Database::insert('orders', $orderData);
 
             foreach($_SESSION['cart'] as $item){
-                $data = [
-                    "amount" => $item['quantity'],
-                    "order_id" => $orderId,
-                    "dish_id" => $item['id'],
-                ];
-
+                $itemString = "";
+                
                 $dish = Database::select('dishes_ingredients', ['*'], ['dish_id' => $item['id']])[0];
 
                 foreach($item['ingredients'] as $ingredientId){
@@ -147,23 +147,33 @@
                     die();
                    }
 
+                   $itemString.=$ingredient['name'] . " - " . $dish['quantity'] . "x\n";
+                   
                    $newAmount = $ingredient['quantity']-($item['quantity']*$dish['quantity']);
 
                    Database::update('ingredients', ['quantity' => $newAmount], ['id' => $ingredientId ]);
                 }
 
+                $data = [
+                    "amount" => $item['quantity'],
+                    "order_id" => $orderId,
+                    "dish_id" => $item['id'],
+                    "notes" => $itemString,
+                ];
+
                 $orderDishId = Database::insert('orders_dishes', $data);
-                unset($_SESSION['cart']);
-                Auth::redirect('history.php');
             }
 
+            
+            unset($_SESSION['cart']);
+            Auth::redirect('history.php');
         }
     }
     
     ?>
 
     <?php if(!Cart::isEmpty()){ ?>
-    <p>Total: R$<?= $total ?></p>
+    <p>Total: R$<?= number_format((float)$total, 2, ',') ?></p>
 
     <form class="center" method="POST" enctype="multipart/form-data">
         <input class="input" type="text" name="district" placeholder="Bairro" required>

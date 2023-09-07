@@ -40,7 +40,7 @@ if(isset($_GET['id'])){
     <form method="POST">
         <h1><?= $dish[0]['name'] ?></h1>
         <h2 class="dishDesc"><?= $dish[0]['description'] ?></h2>
-        <h2 class="price">R$<?= $dish[0]['price'] ?>,00</h2>
+        <h2 class="price">R$<?= number_format((float)$dish[0]['price'], 2, ',') ?></h2>
 
         <div class="inputGroup">
             <label class="lbl" for="quantity">Quantidade</label>

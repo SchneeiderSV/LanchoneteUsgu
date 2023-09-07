@@ -22,11 +22,11 @@
             <?php foreach($orderDishes as $orderDish){
                 $dish = Database::select('dishes', ['*'], ['id' => $orderDish['dish_id']])[0];
                 ?>
-                <h2><?= $dish['name'] . " - " . $dish['size'] . " - " . $orderDish['amount'] ?>x</h2>
+                <h2><?= $dish['name'] . " - " . $dish['size'] . " - " . $orderDish['notes'] ?>x</h2>
             <?php } ?>
         </div>
 
-        <p>Valor total: <?= $order['total_price'] ?></p>
+        <p>Valor total: R$<?= number_format((float)$order['total_price'], 2, ',') ?></p>
 
         <p>Dados de entrega: <?= $order['district'] . ", ". $order['street'] . ", " . $order['number'] . ", " . $order['complement'] ?></p>
 

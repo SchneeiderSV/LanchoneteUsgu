@@ -14,7 +14,7 @@ function validate($data, $type) {
             return filter_var($data, FILTER_VALIDATE_FLOAT) !== false;
         case 'img':
             if (isset($data['tmp_name']) && is_uploaded_file($data['tmp_name'])) {
-                $allowedExtensions = ['jpg', 'jpeg', 'png', 'gif'];
+                $allowedExtensions = ['jpg', 'jpeg', 'png', 'gif', 'jfif', 'webp'];
                 $fileExtension = strtolower(pathinfo($data['name'], PATHINFO_EXTENSION));
                 $isValidExtension = in_array($fileExtension, $allowedExtensions);
                 $isValidSize = $data['size'] <= 5 * 1024 * 1024; // 5MB
