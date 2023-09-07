@@ -32,7 +32,7 @@
         <h1><?= $dish['name'] . " - " . $dish['size'] ?></h1>
         <div class="ingredients">
             <?php foreach($item['ingredients'] as $k) {
-                $currentIngredient = Database::select('ingredients', ['id', 'name'], ['id' => $k])[0];
+                $currentIngredient = Database::select('ingredients', ['id', 'name'], [$k])[0];
                 ?>
                 
                 <h2><?= $currentIngredient['name'] ?></h2>

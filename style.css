@@ -99,11 +99,16 @@ html, body {
     display: flex;
     justify-content: center;
     align-items: center;
-    flex-wrap: wrap;
     border-radius: 0.5rem;
     background-color: lightgray;
     padding: 1rem;
     margin-bottom: 3rem;
+    overflow: auto;
+    width: 250px;
+}
+
+.padding{
+    padding-left: 230px;
 }
 
 .dishBox {
@@ -118,15 +123,16 @@ html, body {
 }
 
 .img {
-    width: 250px;
-    height: 250px;
+    width: 150px;
+    height: 150px;
     border-radius: 0.5rem;
 }
 
 .img2 {
-    width: 25rem;
-    height: 25rem;
+    width: 15rem;
+    height: 15rem;
     border-radius: 0.5rem;
+    border: 15px solid white;
 }
 
 .dishBox p {
@@ -143,16 +149,24 @@ html, body {
 }
 
 .dishInfo {
+    width: inherit;
+    height: inherit;
     text-align: center;
     display: flex;
     flex-direction: column;
-    gap: 2rem;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    background-color: lightgray;
+    padding: 2rem;
 }
 
 .dishInfo form {
     width: 100%;
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 .dishInfo form h1 {
@@ -166,8 +180,7 @@ html, body {
 .dishInfo .dishDesc {
     font-size: 1.2rem;
     text-align: left;
-    padding: 2rem;
-    margin: 1rem;
+    padding: 1rem;
     background-color: lightgray;
     border-radius: 0.2rem;
 }
@@ -177,14 +190,13 @@ html, body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 0.5rem;
 }
 
 .dishInfo .ingredientCheckbox{
-    background-color: lightgray;
     padding: 0.5rem;
     min-width: 30%;
     margin-bottom: 0.5rem;
+    font-size: 1.2rem;
 }
 
 .center {
@@ -334,4 +346,36 @@ html, body {
     flex-direction: column;
     justify-content: center;
     margin-top: 1.2rem;
+}
+
+.ingredient{
+    margin-top: 0.3rem;
+    margin-bottom: 0.3rem;
+}
+
+.ingName{
+    letter-spacing: 1px;
+}
+
+.dishBtn{
+    background-color: lightgray;
+    padding: 0.1rem 0.5rem;
+    text-decoration: none;
+    color: rgba(0, 0, 255, 0.726);
+}
+
+.existingingredients{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 0.4rem;
+}
+
+.userBox{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    margin: 1rem;
 }

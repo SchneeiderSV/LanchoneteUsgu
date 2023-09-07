@@ -15,7 +15,7 @@ if(isset($_GET['id'])){
     if (isset($_POST['cart'])) {
         $quantity = intval($_POST['quantity']);
 
-        $ingredients = array_keys($_POST['ingredients']);
+        $ingredients = array($_POST['ingredients']);
 
         if ($quantity > 0) {
 
@@ -32,13 +32,12 @@ if(isset($_GET['id'])){
         $dishIngredients = Database::join('dishes_ingredients', 'ingredient_id', 'ingredients', 'id', ['*'], ["dish_id" => $selectedId]);
     ?>
     
-
 <div class="dishInfo">
     <img class="img2" src="images/<?= $dish[0]['img'] ?>" alt="">
 
 
     <form method="POST">
-        <h1><?= $dish[0]['name'] ?></h1>
+        <h1 style="background-color: white; border-radius: 0.5rem; padding: 3px;"><?= $dish[0]['name'] ?></h1>
         <h2 class="dishDesc"><?= $dish[0]['description'] ?></h2>
         <h2 class="price">R$<?= number_format((float)$dish[0]['price'], 2, ',') ?></h2>
 

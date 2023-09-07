@@ -68,10 +68,10 @@
             <?php if($ingredients) {
                 foreach($ingredients as $ingredient) { ?>
                 <div class="ingredient">
-                    <h2><?= $ingredient['name'] ?></h2>
-                    <p>Quantidade: <?= $ingredient['quantity'] ?></p>
-                    <a href="editIngredient.php?id=<?= $ingredient['id'] ?>">Editar</a>
-                    <a href="ingredients.php?delete=<?= $ingredient['id'] ?>">Excluir</a>
+                    <h2 class="ingName"><?= $ingredient['name'] ?></h2>
+                    <p style="text-align: justify; margin-top: 0.5rem;margin-bottom: 0.25rem;">Quantidade: <?= $ingredient['quantity'] ?></p>
+                    <a class="dishBtn" href="editIngredient.php?id=<?= $ingredient['id'] ?>">Editar</a>
+                    <a class="dishBtn" href="ingredients.php?delete=<?= $ingredient['id'] ?>">Excluir</a>
                 </div>
             <?php } } ?>
         </div>
