@@ -7,12 +7,12 @@
 
 
     $orders = Database::select('orders', ['*'], ['user_id' => $_SESSION['id']], "created_at ASC");
-    if(!$orders) echo "Nenhum pedido foi feito ainda!";
 ?>
 
 <h1>Pedidos</h1>
 
-<?php if($orders) { foreach($orders as $order) {
+<?php     if(!$orders) echo "Nenhum pedido foi feito ainda!";
+else { foreach($orders as $order) {
         $orderDishes = Database::select('orders_dishes', ['*'], ['order_id' => $order['id']]);
     ?>
     <div class="orderItem">

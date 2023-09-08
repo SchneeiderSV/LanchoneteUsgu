@@ -18,14 +18,42 @@ if(isset($_GET['id'])){
 <?php } else {
     $users = Database::select('users', ['*']);
 
+    ?>
+    
+    <table class="userTable">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nome</th>
+                <th>CPF</th>
+                <th>Email</th>
+                <th>Registro da conta</th>
+            </tr>
+        </thead>
+
+        <tbody>
+        <?php
     if($users) { foreach($users as $user){ ?>
-        <div class="userBox">
-            <span class="userInfo"><?= $user['name'] ?></span>
-            <span class="userInfo"><?= $user['email'] ?></span>
-            <span class="userInfo"><?= $user['cpf'] ?></span>
-            <span class="userInfo"><?= (new DateTimeImmutable($user['created_at']))->format('d-m-Y H:i:s') ?></span>
-        </div>
+        <tr>
+            <td><?= $user['id'] ?></td>
+            <td><?= $user['name'] ?></td>
+            <td><?= $user['cpf'] ?></td>
+            <td><?= $user['email'] ?></td>
+            <td><?= (new DateTimeImmutable($user['created_at']))->format('d-m-Y H:i:s') ?></td>
+        </tr>
+
+        <tr>
+            <td><?= $user['id'] ?></td>
+            <td><?= $user['name'] ?></td>
+            <td><?= $user['cpf'] ?></td>
+            <td><?= $user['email'] ?></td>
+            <td><?= (new DateTimeImmutable($user['created_at']))->format('d-m-Y H:i:s') ?></td>
+        </tr>
 <?php } } } ?>
+        </tbody>
+    </table>
+    
+    
 
 
 <?php include('footer.php') ?>

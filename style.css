@@ -227,14 +227,6 @@ html, body {
     cursor: pointer;
 }
 
-/*.input,.inputBtn {
-    width: 60%;
-    padding: 0.5rem;
-    border-radius: 0.5rem;
-    border: 1px solid black;
-    outline: none;
-}*/
-
 .input{
     width: 80%;
     padding: 0.5rem;
@@ -355,4 +347,13 @@ html, body {
 
 .orderItem hr {
     margin: 0.2rem 0;
+}
+
+.userTable {
+    text-align: center;
+    background-color: beige;
+    padding: 1rem;
+    margin: 1rem;
+    width: 90%;
+    border-spacing: 0.5rem;
 }
