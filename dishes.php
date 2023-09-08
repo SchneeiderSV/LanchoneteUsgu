@@ -96,7 +96,7 @@
 ?>
 
 <section class="dishes">
-    <h1 class="logo" style="background-color: lightgray; font-size:2rem;">Pratos</h1>
+    <h1 class="logo" style="background-color: lightgray;">Dishes</h1>
     <form class="center form" method="POST" enctype="multipart/form-data">
             
             
@@ -122,7 +122,7 @@
                 <?php if($ingredients){ foreach ($ingredients as $ingredient) { ?>  
                     <div>
                         <label class="lbl" for="<?= $ingredient['id']?>"><?= $ingredient['name']?></label>
-                        <input class="quantityInput" min="1" type="number" name="ingredients[<?= $ingredient['id']?>]" id="<?= $ingredient['id']?>" required>
+                        <input class="quantityInput" type="number" name="ingredients[<?= $ingredient['id']?>]" id="<?= $ingredient['id']?>">
                     </div>
                 <?php } } ?>
 
@@ -135,10 +135,10 @@
                 <?php if($dishes) {
                     foreach($dishes as $dish) { ?>
                     <div class="ingredient">
-                        <h2 class="ingName"><?= $dish['name'] ?></h2>
-                        <p style="text-align: justify; margin-top: 0.5rem;margin-bottom: 0.25rem;"><?= $dish['description'] ?></p>
-                        <a class="dishBtn" href="editDish.php?id=<?= $dish['id'] ?>">Editar</a>
-                        <a class="dishBtn" href="dishes.php?delete=<?= $dish['id'] ?>">Excluir</a>
+                        <h2><?= $dish['name'] ?></h2>
+                        <p><?= $dish['description'] ?></p>
+                        <a href="editDish.php?id=<?= $dish['id'] ?>">Editar</a>
+                        <a href="dishes.php?delete=<?= $dish['id'] ?>">Excluir</a>
                     </div>
                 <?php } } ?>
             </div>
