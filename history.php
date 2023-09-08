@@ -21,10 +21,14 @@
         <div class="orderDishes">
             <?php foreach($orderDishes as $orderDish){
                 $dish = Database::select('dishes', ['*'], ['id' => $orderDish['dish_id']])[0];
+                $notes = explode("\n", $orderDish['notes']);
                 ?>
-                <h2><?= $dish['name'] . " - " . $dish['size'] . " - " . $orderDish['notes'] ?>x</h2>
+                <h2><?= $dish['name'] . " - " . $dish['size']?></h2>
+                <p><?= implode("<br>", $notes) ?></p>
             <?php } ?>
         </div>
+
+        <hr>
 
         <p>Valor total: R$<?= number_format((float)$order['total_price'], 2, ',') ?></p>
 

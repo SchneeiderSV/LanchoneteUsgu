@@ -2,7 +2,8 @@
     include("header.php");
     require_once("utils/Database.php");
 
-    $dishes = Database::selectAll('dishes');
+    $dishes = Database::select('dishes', ['*'], ['is_drink' => false]);
+    $drinks = Database::select('dishes', ['*'], ['is_drink' => true]);
 ?>
 
 
@@ -16,7 +17,23 @@
             <p>R$<?= number_format((float)$dish['price'], 2, ',') ?></p>
 
             <button>Ver mais</button>
-            <button>Adicionar ao carrinho</button>
+        </div>
+
+        <?php } } ?>
+    </section>
+</div>
+
+
+<div>
+    <h1 class="title">Bebidas</h1>
+    <section class="dishList">
+        <?php if($drinks) { foreach($drinks as $drink) {  ?>
+        <div class="dishBox" onclick="window.location.href=`dish.php?id=<?= $dish['id'] ?>`">
+            <img class="img" src="images/<?= $drink['img'] ?>">
+            <h3><?= $drink['name'] ?></h3>
+            <p>R$<?= number_format((float)$drink['price'], 2, ',') ?></p>
+
+            <button>Ver mais</button>
         </div>
 
         <?php } } ?>
