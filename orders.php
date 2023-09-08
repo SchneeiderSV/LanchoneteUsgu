@@ -18,6 +18,7 @@
 
 <h2>Listagem de pedidos</h2>
 
+<div class="orders">
 <?php if($orders) { foreach($orders as $order) {
         $user = Database::select('users', ['*'], [ 'id' => $order['user_id']])[0];
         $orderDishes = Database::select('orders_dishes', ['*'], ['order_id' => $order['id']]);
@@ -51,7 +52,7 @@
 
         </div>
         <p>Status do pedido: <?= $orderStatus[$order['status']] ?></p>
-        <p>Pedido feito por: <a href="users.php?id=<?= $user['id']?>"><?= $user['name']?></a> - <?php $user['email']?> - <?php echo (new DateTimeImmutable($order['created_at']))->format('d-m-Y H:i:s'); ?></p>
+        <p>Pedido feito por: <a href="users.php?id=<?= $user['id']?>"><?= $user['name']?></a> - <?= $user['email']?> - <?php echo (new DateTimeImmutable($order['created_at']))->format('d-m-Y H:i:s'); ?></p>
 
         <?php if($order['status'] != 3 && $order['status'] != 4) { ?>
         <form method="POST">
@@ -68,5 +69,6 @@
     </div>
     
 <?php } }?>
+</div>
 
 <?php include('footer.php'); ?>

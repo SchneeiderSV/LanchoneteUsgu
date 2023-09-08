@@ -6,7 +6,7 @@
     Auth::checkAuth();
 
 
-    $orders = Database::select('orders', ['*'], ['user_id' => $_SESSION['id']], "created_at DESC");
+    $orders = Database::select('orders', ['*'], ['user_id' => $_SESSION['id']], "created_at ASC");
     if(!$orders) echo "Nenhum pedido foi feito ainda!";
 ?>
 
