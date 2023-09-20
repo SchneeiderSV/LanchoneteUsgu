@@ -4,7 +4,7 @@ class Auth {
     public static $path = "http://localhost/lanchoneteusgu/";
 
     public static function login($user) {
-        $_SESSION['id'] = intval($user['id']);
+        $_SESSION['id'] = $user['id'];
         $_SESSION['admin'] = $user['is_adm'];
         $_SESSION['name'] = $user['name'];
         $_SESSION['email'] = $user['email'];
