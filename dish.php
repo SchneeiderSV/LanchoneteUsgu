@@ -15,7 +15,9 @@ if(isset($_GET['id'])){
     if (isset($_POST['cart'])) {
         $quantity = intval($_POST['quantity']);
 
-        $ingredients = array_keys($_POST['ingredients']);
+        if(isset($_POST['ingredients'])){
+            $ingredients = array_keys($_POST['ingredients']);
+        } else $ingredients = 0;
 
         if ($quantity > 0) {
 

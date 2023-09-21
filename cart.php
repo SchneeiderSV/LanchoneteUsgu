@@ -15,6 +15,7 @@
 
     $total = 0;
     $dishes = [];
+
 ?>
 
 <h1>Carrinho de compras</h1>
@@ -22,7 +23,7 @@
 <div class="center">
 
     <?php if(isset($_SESSION['cart'])) foreach($_SESSION['cart'] as $index => $item){
-        $dish = Database::select('dishes', ['id', 'name', 'price', 'description', 'img', 'size'], ["id" => $item['id']])[0];
+        $dish = Database::select('dishes', ['id', 'name', 'price', 'description', 'img', 'size', 'is_drink'], ["id" => $item['id']])[0];
         $currentItemPrice = $item['quantity']*floatval($dish['price']);
         $total += $currentItemPrice;
     ?>
@@ -31,12 +32,12 @@
         <img class="imgCart" src="images/<?= $dish['img'] ?>" alt="">
         <h1><?= $dish['name'] . " - " . $dish['size'] ?></h1>
         <div class="ingredients">
-            <?php foreach($item['ingredients'] as $k) {
+            <?php if(!$dish['is_drink']) { foreach($item['ingredients'] as $k) {
                 $currentIngredient = Database::select('ingredients', ['id', 'name'], ['id' => $k])[0];
                 ?>
                 
                 <h2><?= $currentIngredient['name'] ?></h2>
-            <?php } ?>
+            <?php }} ?>
         </div>
         <h3><?= $item['quantity']; ?></h3>
 

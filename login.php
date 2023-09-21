@@ -21,7 +21,7 @@
     
         if(empty($errors)){
 
-            $user = Database::select('users', ['id', 'email', 'pass', 'cpf', 'is_adm', 'name'], ["email" => $email])[0];
+            $user = @Database::select('users', ['id', 'email', 'pass', 'cpf', 'is_adm', 'name'], ["email" => $email])[0];
 
             if($user && password_verify($password, $user['pass'])){
                 Auth::login($user);
