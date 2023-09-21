@@ -65,7 +65,6 @@ if(isset($_GET['id'])){
 
         <div class="center">
             <input class="btn" type="submit" name="cart" value="Adicionar ao carrinho">
-            <button class="btn">Finalizar Pedido</button>
         </div>
         
     </form>
